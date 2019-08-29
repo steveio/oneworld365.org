@@ -1,0 +1,17 @@
+Hello,
+
+::MSG_TXT::
+
+::ENQUIRY_TYPE:: Details
+
+
+::GENERIC_TXT::
+
+::ENQUIRY_TXT::
+
+::BOOKING_TXT::
+
+::BROCHURE_TXT::
+
+::JOB_APP_TXT::
+

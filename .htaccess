@@ -1,0 +1,58 @@
+<IfModule mod_rewrite.c>
+
+
+    RewriteEngine On
+    RewriteBase /
+
+    RewriteRule ^(links.php)$ /links [L,R=301]
+
+    ### Canonicalize URLs
+
+    RewriteRule ^(index(\.php)?)/?$ / [L,R=301]
+
+    # /country to /travel
+    RewriteRule ^country/(.*)$ /travel/$1 [QSA,L,R=301]
+
+    RewriteRule ^activity/(.*)$ /$1 [QSA,L,R=301]
+    RewriteRule ^category/(.*)$ /$1 [QSA,L,R=301]
+
+    RewriteRule ^travel/(.*)/travel-adventure-tours$ /travel/$1/tours [QSA,L,R=301]
+
+    RewriteRule ^company/(.*)/placements$ /company/$1 [QSA,L,R=301]
+
+
+    RewriteRule ^travel/(.*)/volunteer-abroad$ /travel/$1/volunteer [QSA,L,R=301]
+    RewriteRule ^search/volunteer-in-(.*)$ /travel/$1/volunteer [QSA,L,R=301]
+
+
+    # Removes trailing slashes (prevents SEO duplicate content issues)
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)/$ /$1 [L,R=301]
+
+
+
+    # Enforce www
+    # If you have subdomains, you can add them to
+    # the list using the "|" (OR) regex operator
+    #RewriteCond %{HTTP_HOST} !^(www) [NC]
+    #RewriteRule ^(.*)$ http://www.oneworld365.org/$1 [L,R=301]
+
+    #RewriteCond %{HTTP_HOST} !^(www.oneworld365.org) [NC]
+    #RewriteRule ^(.*)$ http://www.oneworld365.org/$1 [L,R=301]
+
+    # Checks to see if the user is attempting to access a valid file,
+    # such as an image or css document, if this isn't true it sends the
+    # request to index.php
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php/$1 [L]
+    #RewriteRule !\.(js|ico|gif|jpg|png|css)$ index.php/$1 [L]
+
+</IfModule>
+
+<IfModule !mod_rewrite.c>
+
+    # Without mod_rewrite, route 404's to the front controller
+    ErrorDocument 404 /index.php
+
+</IfModule>

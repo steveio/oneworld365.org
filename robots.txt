@@ -1,0 +1,42 @@
+
+User-Agent: Googlebot
+
+User-agent: msnbot
+Crawl-delay: 20
+
+User-agent: bingbot
+Crawl-delay: 20
+
+User-agent: Slurp
+Crawl-delay: 20
+
+
+User-agent: Yandex
+Crawl-delay: 30
+Disallow: /*?*
+Disallow: /search
+Disallow: /chat
+Disallow: /advertise.php
+
+User-agent: Baiduspider
+Crawl-delay: 30
+Disallow: /*?*
+Disallow: /search
+Disallow: /chat
+Disallow: /advertise.php
+
+User-agent: daumoa
+Crawl-delay: 30
+Disallow: /*?*
+Disallow: /search
+Disallow: /chat
+Disallow: /advertise.php
+
+User-agent: Speedy
+Crawl-delay: 30
+Disallow: /*?*
+Disallow: /search
+Disallow: /chat
+Disallow: /advertise.php
+
+

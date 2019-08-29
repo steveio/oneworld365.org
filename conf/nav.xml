@@ -1,0 +1,316 @@
+<?xml version="1.0" ?> 
+<nav>
+<sections>
+	<section>
+		<title>TRAVEL</title> 
+		<desc>View Trips &amp; Adventure Travel Opportunities</desc> 
+		<link>/travel-tour</link> 
+		<subsections>
+			<subsection>
+			<title>Travel Guides</title> 
+			<link>/travel</link> 
+			</subsection>
+			<subsection>
+			<title>Tours</title> 
+			<link>/tours</link> 
+			</subsection>
+			<subsection>
+			<title>Adventure Travel</title> 
+			<link>/travel-tour</link> 
+			</subsection>
+			<subsection>
+			<title>Backpacking</title> 
+			<link>/backpacking</link> 
+			</subsection>
+			<subsection>
+			<title>Festivals &amp; Events</title> 
+			<link>/festival-tours</link> 
+			</subsection>
+			<subsection>
+			<title>Gap Years</title> 
+			<link>/gap-year</link> 
+			</subsection>
+			<subsection>
+			<title>Career Breaks</title> 
+			<link>/career-break</link> 
+			</subsection>
+			<subsection>
+			<title>Cycling</title> 
+			<link>/cycling-tours</link> 
+			</subsection>
+			<subsection>
+			<title>Safaris</title> 
+			<link>/safari-tours</link> 
+			</subsection>
+			<subsection>
+			<title>Sailing &amp; Island Hopping</title> 
+			<link>/sailing-tours</link> 
+			</subsection>
+			<subsection>
+			<title>Scuba Diving</title> 
+			<link>/scuba-diving</link> 
+			</subsection>
+			<subsection>
+			<title>Surfing</title> 
+			<link>/surfing</link> 
+			</subsection>
+			<subsection>
+			<title>Yoga</title> 
+			<link>/yoga-retreats</link> 
+			</subsection>
+			
+		</subsections>
+	</section>
+
+	<section>
+		<title>VOLUNTEER</title> 
+		<desc>Find Volunteering Opportunities</desc> 
+		<link>/category/volunteer</link> 
+		<subsections>
+			<subsection>
+			<title>Volunteer Abroad</title> 
+			<link>/volunteer</link> 
+			</subsection>
+			<subsection>
+			<title>Animals</title> 
+			<link>/animal-volunteer-projects</link> 
+			</subsection>
+			<subsection>
+			<title>Building &amp; Construction</title> 
+			<link>/building-construction-projects</link> 
+			</subsection>
+			<subsection>
+			<title>Childcare</title> 
+			<link>/volunteer-with-children</link> 
+			</subsection>
+			<subsection>
+			<title>Community Development</title> 
+			<link>/community-volunteer-projects</link> 
+			</subsection>
+			<subsection>
+			<title>Conservation &amp; Environment</title> 
+			<link>/conservation-volunteer-projects</link> 
+			</subsection>
+			<subsection>
+			<title>Medical &amp; Healthcare</title> 
+			<link>/medical-volunteering</link> 
+			</subsection>
+			<subsection>
+			<title>Help Refugees</title> 
+			<link>/volunteer-with-refugees</link> 
+			</subsection>
+			<subsection>
+			<title>Teaching Projects</title> 
+			<link>/volunteer-teaching-projects</link> 
+			</subsection>
+			<subsection>
+			<title>Summer Volunteer Programs</title> 
+			<link>/summer-volunteer-programs</link> 
+			</subsection>
+			<subsection>
+			<title>Best Volunteer Organisations</title> 
+			<link>/blog/best-volunteer-organizations</link> 
+			</subsection>
+		</subsections>
+	</section>
+
+	<section>
+		<title>JOBS</title> 
+		<desc>Jobs &amp; Work Abroad</desc> 
+		<link>/jobs</link> 
+		<subsections>
+			<subsection>
+			<title>Work Abroad</title> 
+			<link>/jobs</link> 
+			</subsection>
+			<subsection>
+			<title>Au Pair &amp; Nanny Jobs</title> 
+			<link>/au-pair-jobs</link> 
+			</subsection>
+			<subsection>
+			<title>Hospitality Jobs</title> 
+			<link>/hospitality-jobs</link> 
+			</subsection>
+			<subsection>
+			<title>Gap Year Jobs</title> 
+			<link>/gap-year-jobs</link> 
+			</subsection>
+			<subsection>
+			<title>Sports Coaching</title> 
+			<link>/sports-coaching</link> 
+			</subsection>
+			<subsection>
+			<title>Summer Jobs</title> 
+			<link>/summer-jobs</link> 
+			</subsection>
+			<subsection>
+			<title>Summer Camp Jobs</title> 
+			<link>/summer-camp-jobs</link> 
+			</subsection>
+			<subsection>
+			<title>Winter Jobs</title> 
+			<link>/winter-jobs</link> 
+			</subsection>
+		</subsections>
+	</section>
+
+	<section>
+	<title>TEFL</title> 
+		<desc>Teaching English Abroad</desc> 
+		<link>/teaching</link> 
+		<subsections>
+			<subsection>
+			<title>Teach Abroad</title> 
+			<link>/teaching</link> 
+			</subsection>
+			<subsection>
+			<title>TEFL Courses</title> 
+			<link>/tefl-courses</link> 
+			</subsection>
+			<subsection>
+			<title>Online TEFL Courses</title> 
+			<link>/online-tefl-courses</link> 
+			</subsection>
+			<subsection>
+			<title>TEFL Internships</title> 
+			<link>/tefl-internships</link> 
+			</subsection>
+			<subsection>
+			<title>TEFL Jobs</title> 
+			<link>/tefl-jobs</link> 
+			</subsection>
+		</subsections>
+	</section>
+
+	<section>
+		<title>LEARN</title> 
+		<desc>Courses &amp; Development</desc> 
+		<link>/courses</link> 
+		<subsections>
+			<subsection>
+			<title>Language Courses</title> 
+			<link>/language-schools</link> 
+			</subsection>
+			<subsection>
+			<title>Study Abroad Programs</title> 
+			<link>/study-abroad</link> 
+			</subsection>
+			<subsection>
+			<title>Internships</title> 
+			<link>/internship</link> 
+			</subsection>
+			<subsection>
+			<title>Martial Arts Training</title> 
+			<link>/martial-arts-training</link> 
+			</subsection>
+			<subsection>
+			<title>Safari Guide Courses</title> 
+			<link>/field-guide-training</link> 
+			</subsection>
+			<subsection>
+			<title>Ski &amp; Snowboard Instructor Courses</title> 
+			<link>/ski-snowboard-instructor-courses</link> 
+			</subsection>
+			<subsection>
+			<title>Summer Camps</title> 
+			<link>/summer-camps</link> 
+			</subsection>
+			<subsection>
+			<title>Watersports Instructor Courses</title> 
+			<link>/watersports-courses</link> 
+			</subsection>
+		</subsections>
+	</section>
+
+	<section>
+		<title>ARTICLES</title> 
+		<desc>Latest Articles</desc> 
+		<link>/blog</link>	
+		<subsections>
+			<subsection>
+			<title>Travel Blog</title> 
+			<link>/blog</link> 
+			</subsection>
+			<subsection>
+			<title>Travel Deals &amp; Special Offers</title> 
+			<link>/travel-special-offers</link> 
+			</subsection>
+			<subsection>
+			<title>Competitions</title> 
+			<link>/competitions</link> 
+			</subsection>
+			<subsection>
+			<title>Flights</title> 
+			<link>/flights</link> 
+			</subsection>
+			<subsection>
+			<title>Travel Insurance</title> 
+			<link>/travel-insurance</link> 
+			</subsection>
+			<subsection>
+			<title>Hostels</title> 
+			<link>/hostels</link> 
+			</subsection>
+			<subsection>
+			<title>Hotels</title> 
+			<link>/hotels</link> 
+			</subsection>
+			<subsection>
+			<title>Travel Advice</title> 
+			<link>/travel-advice</link> 
+			</subsection>
+			<subsection>
+			<title>Become A Travel Writer</title> 
+			<link>/blog/become-a-travel-writer-for-one-world-365</link> 
+			</subsection>
+			<subsection>
+			<title>Best Tour Companies</title> 
+			<link>/blog/best-tour-companies-for-18-35-year-olds</link> 
+			</subsection>
+			<subsection>
+			<title>Best Gap Year Companies</title> 
+			<link>/blog/best-gap-year-companies</link> 
+			</subsection>
+			<subsection>
+			<title>Summer Travel Ideas</title> 
+			<link>/blog/summer-travel-ideas</link> 
+			</subsection>
+		</subsections>
+	</section>
+	
+	<section>
+		<title>ABOUT</title> 
+		<desc>About Us, Advertising, Contact</desc> 
+		<link>/about-us</link> 
+		<subsections>
+			<subsection>
+			<title>About Us</title> 
+			<link>/about-us</link> 
+			</subsection>
+			<subsection>
+        	<title>Advertise</title>
+    	    <link>/advertising</link>
+            </subsection>
+			<subsection>
+			<title>Leave A Review</title> 
+			<link>/reviews</link> 
+			</subsection>
+			<subsection>
+			<title>Careers</title> 
+			<link>/one-world-365-job-opportunities</link> 
+			</subsection>
+			<subsection>
+			<title>Social Media Pages</title> 
+			<link>/social-media-pages</link> 
+			</subsection>
+			<subsection>
+			<title>Contact</title> 
+			<link>/contact</link> 
+			</subsection>
+		</subsections>
+	</section>
+
+
+</sections>
+</nav>
+

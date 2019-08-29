@@ -1,0 +1,234 @@
+<?
+
+ini_set('display_errors', 0);
+ini_set('log_errors', 1);
+ini_set('error_log', '/www/vhosts/gapyear365.com/logs/php_error.log');
+error_reporting(E_ALL &~ E_NOTICE &~ E_STRICT);
+
+
+
+// config.......
+
+date_default_timezone_set('Europe/London');
+
+
+// db connection... (@todo - move into $_CONFIG for consistancy)
+$dsn = array("dbhost" => "localhost","dbuser" => "postgres", "dbpass" => "p0stgr3s","dbname" => "oneworld365","dbport" => "5432");
+
+// phpbb (message board) db connection
+$dsn_phpbb = array("dbhost" => "localhost","dbuser" => "postgres", "dbpass" => "p0stgr3s","dbname" => "phpbb","dbport" => "5432");
+
+define("DEBUG",FALSE);
+define("DEV",false);
+
+define('TEST_EMAIL','test@oneworld365.co.uk');
+
+/* 0 = none, 1 = error, 2 = debug, 3 = verbose debug */
+define('LOG_LEVEL',1);
+
+define('ROOT_PATH','/www/vhosts/gapyear365.com/htdocs');
+define('LOG_PATH',"/www/vhosts/gapyear365.com/logs");
+
+
+define('CACHE_PATH',ROOT_PATH."/cache");
+define('CACHE_ENABLED',TRUE);
+define('CACHE_LOG',false);
+
+
+/* listing types */
+define("FREE_LISTING",0);
+define("BASIC_LISTING",1);
+define("ENHANCED_LISTING",2);
+define("SPONSORED_LISTING",3);
+
+/* default placement quotas */
+define("FREE_PQUOTA",0);
+define("BASIC_PQUOTA",1);
+define("ENHANCED_PQUOTA",10);
+define("SPONSORED_PQUOTA",25);
+
+
+/* no of permitted login attempts before account is locked */ 
+define("MAX_LOGIN_ATTEMPTS",20);
+
+/* Password Encryption md5 Hash Salt Length - do not change */
+define('SALT_LENGTH', 9);
+
+
+$_CONFIG = array(
+
+	// site specific
+	'site_id' => 1,       
+	'brand' => 'gapyear365.com',
+	'url' => 'http://www.gapyear365.com',
+	'root_path' => ROOT_PATH,
+	'company_home' => "/company",
+	'placement_home' => "/placement",
+	'category_home' => "/category",
+	'template_home' => "/templates",
+	'login_redirect_url' => '/account.php',
+
+	'email_template_hdr' => '/email_html_header.php',
+	'email_template_footer' => '/email_html_footer.php', 
+	'error_page' => 'http://www.gapyear365.com/error.php',	
+
+	'site_title' => 'GAP YEAR 365',
+	'logo_url' => 'http://www.gapyear365.com/images/gapyear365.gif',
+	'meta-tag' => 'ihBGTHsYbyYqZR3M9KXRqt0MJrmNRBEJX2BPdDwR3ZQ=',
+
+	'admin_email' => 'admin@gapyear365.com',
+	'website_email' => 'website@gapyear365.com',
+	'bcc_list' => 'admin@oneworld365.org',	
+
+
+	'css_file' => 'gapyear365.css',
+	'google_analytics_id' => 'UA-365400-14',
+
+	// nav
+	'nav' => array(
+		'home' => './',
+		'search' => './placement',
+		'destinations' => './country/',
+		'activities' => './activity',
+		'news' => './news/',
+		'about us' => './about-gapyear365'
+
+	),
+
+
+	// banners (defined in /www/vhosts/oneworld365.org/htdocs/conf/banner_config.php )
+	'banner_id' => 'GAPYEAR365',
+	'vertical_banner_id' => 'GAPYEAR365_VERTICAL',
+
+	/* default 8bit profile / enquiry option bitmaps for all comps added via this site */
+	'prof_opt' => '11100000',
+	'enq_opt' =>  '10000000',
+
+
+
+	/* cache system parameters */
+	'cache_enabled' => false, // cache master on || off?
+	'cache_create' => true, /* @depreciated - generate cache items via browser */
+
+
+	// homepage
+	'has_enhanced' => false,
+	'has_sponsored' => true,
+	'has_recent_placements' => true,
+	'has_company_by_category' => true,
+	'has_partnerships' => true,
+	'has_select_panel' => true,
+	'has_sponsored_comp_list' => true,
+	'has_vertical_ads' => true,
+	'has_country_select_panel' => true,
+	'has_activity_select_list' => true,
+	'has_tabs' => true,
+
+	// partnerships
+	'has_partnership_01' => false,
+	'has_partnership_02' => false,
+	'has_partnership_03' => true,
+
+
+	// site (category/channel) specifc db views
+	'company_table' => 'company_view_1',
+	'placement_table' => 'profile_hdr',
+	'profile_hdr_table' => 'profile_hdr',
+	'index_table' => 'keyword_idx_view_1',
+	'tagcloud_table' => 'keyword_idx_1',
+	'comp_country_map' => 'comp_country_map',
+	'image_map' => 'image_map',
+	'image' => 'image',
+	
+
+	// also defines website id's eg.  summercampjobs = site_id 4
+	'categories' => array(6 => "Seasonal Jobs",3 => "Summer Camp",4 => "Teaching",2 => "Travel / Tour",0 => "Volunteer",1 => "Work"),
+
+	// global page specifc
+
+        'page_title' => 'Gap Year 365 is a guide to Gap Year, Year Out &amp; Career Break Travel and Work.',
+
+	'page_description' => 'Gap Year 365 is a Gap Year, Year Out and Career Break guide to Gap Year Work, Gap Year Volunteering, Working Holidays, Round the World Travel, Adventure Holidays, Teaching and expeditions.',
+
+
+	'page_keywords' => 'gap year, gap year jobs, gap year volunteering, gap year work, career break, year out, round the world, adventure holidays, ecotourism, gap year thailand, gap year south east asia, gap year australia, gap year projects, gap year travel',
+	'site_info' => 'Gap Year 365 features gap year ideas, career break & year out projects, seasonal work, teaching jobs, working holidays, summer / winter jobs, adventure holidays and tours worldwide.',
+		
+	'page_links' => "
+					<a class='f2' href='http://www.gapyear365.com' title='Gap Year'>Gap Year</a>, 
+					<a class='f2' href='http://www.gapyear365.com' title='Year Out'>Year Out</a>, 
+					<a class='f2' href='http://www.gapyear365.com' title='Career Break'>Career Break</a>, 
+					<a class='f2' href='http://www.gapyear365.com/category/work' title='Gap Year Jobs'>Gap Year Jobs</a>, 
+					<a class='f2' href='http://www.gapyear365.com/category/volunteer/' title='Gap Year Volunteer'>Gap Year Volunteer</a>, 
+					<a class='f2' href='http://www.gapyear365.com/category/work' title='Gap Year Work'>Gap Year Work</a>, 
+					<a class='f2' href='http://www.gapyear365.com/continent/asia/' title='Gap Year Asia'>Gap Year South East Asia</a>,
+					<a class='f2' href='http://www.gapyear365.com/continent/africa/' title='Gap Year Africa'>Gap Year Africa</a>,
+					<a class='f2' href='http://www.gapyear365.com/country/australia/' title='Gap Year Australia'>Gap Year Australia</a>,
+					<a class='f2' href='http://www.gapyear365.com/country/thailand/' title='Gap Year Thailand'>Gap Year Thailand</a>,
+					<a class='f2' href='http://www.gapyear365.com/country/united-states' title='Gap Year America'>Gap Year America</a>,
+					<a class='f2' href='http://www.gapyear365.com/activity/community-projects/' title='Gap Year Community Projects'>Gap Year Community Project</a>,
+					<a class='f2' href='http://www.gapyear365.com/search/orphanage' title='Gap Year Orphanage'>Gap Year Ophanage</a>,
+					<a class='f2' href='http://www.gapyear365.com/activity/care-work-childcare' title='Gap Year Childcare'>Gap Year Childcare</a>,
+					<a class='f2' href='http://www.gapyear365.com/activity/animals/' title='Gap Year Animals'>Gap Year Animals</a>,
+					<a class='f2' href='http://www.gapyear365.com/activity/sports' title='Sports Instructor'>Sports Instructor Jobs</a>,
+					<a class='f2' href='http://www.gapyear365.com/category/volunteer' title='Gap Year Volunteering'>Gap Year Volunteering</a>,
+					<a class='f2' href='http://www.gapyear365.com/activity/community-projects/' title='Gap Year Community Projects'>Gap Year Community Projects</a>,
+					<a class='f2' href='http://www.gapyear365.com/category/travel-tour' title='Gap Year Travel'>Gap Year Travel</a>,
+					<a class='f2' href='http://www.gapyear365.com/activity/animals' title='Gap Year with Animals'>Gap Year Animals</a>,
+					<a class='f2' href='http://www.gapyear365.com/activity/medical-health-medicine' title='Gap Year Health Care'>health care</a>,
+					<a class='f2' href='http://www.gapyear365.com/activity/conservation' title='Gap Year Conservation'>Gap Year Conservation</a>
+	",
+
+
+
+	
+
+	// search
+	'results_per_page' => '12',
+	'log_search' => true, // store details of search in a log table
+	'no_featured_placements' => 12, // how many featured placements to display on homepage
+
+
+	// cookie specifc
+	'cookiename' => "gapyear365",
+	'cookie_domain' => '.gapyear365.com',
+	'cookie_path' => '/',
+	'session_expires' => 56000,
+
+	'txt_pattern_generic' => 'Gap Year',
+
+	'txt_pattern_company' => 'Take a Gap Year, Year Out or Career Break with %s.  Gap Year 365 is a guide to Gap Year Travel and Work',
+
+	'txt_pattern_placement' => 'Gap Year 365 is a Gap Year, Year Out and Career Break guide',
+
+
+	'txt_pattern_country' => array('Gap Year %s','Year Out in %s','Career Break in %s'),
+	'txt_pattern_continent' => array('Gap Year %s','Year Out in %s','Career Break in %s'),
+
+	'txt_pattern_activity' => '%s Gap Year ',
+	'txt_pattern_category' => '',
+
+	
+	/* Restrict access to known IP addresses (defined in database) */
+	'IP_ADDRESS_ACCESS_CHECK' => false, 
+
+	/* Captcha Anti-Spam (http://recaptcha.net/) */
+	'CAPTCHA_CHECK_FL' => false, /* enable/disable recaptcha checking? */
+	'CAPTCHA_PUBLIC_KEY' => "6LdhQgUAAAAAAKYnGOyjvbS4pvFagygPpCWqOQwm",
+	'CAPTCHA_PRIVATE_KEY' => "6LdhQgUAAAAAALFRJ3UApJZE6cdAVoblOu4ZAWQc",
+	
+	
+	/* Misc */
+	'VALID_CHAR_REGEX' => "[a-zA-Z0-9@_\-\.]" /* permitted chars in username / password */
+	
+	
+
+
+
+);
+
+
+
+
+
+?>

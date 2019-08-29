@@ -1,0 +1,238 @@
+<?php
+
+require_once('./classes/HTML_Common.class');
+
+/**
+ * Class to dynamically create an HTML SELECT
+ *
+ */
+class HTML_Select extends HTML_Common
+{
+    
+    /**
+     * Contains the select options
+     *
+     * @var       array
+     * @since     1.0
+     * @access    private
+     */
+    var $_options = array();
+    
+    /**
+     * Default values of the SELECT
+     * 
+     * @var       string
+     * @since     1.0
+     * @access    private
+     */
+    var $_values = array();
+
+    /**
+     * Class constructor
+     *
+     * @param     string    $name       (optional)Name attribute of the SELECT
+     * @param     int       $size       (optional) Size attribute of the SELECT
+     * @param     bool      $multiple   (optional)Whether the select will allow multiple 
+     *                                  selections or not
+     * @param     mixed     $attributes (optional)Either a typical HTML attribute string 
+     *                                  or an associative array
+     * @param     int       $tabOffset  (optional)Number of tabs to offset HTML source
+     * @since     1.0
+     * @access    public
+     * @return    void
+     * @throws    
+     */
+    function HTML_Select($name = '', $size = 1, $multiple = false, $attributes = null, $tabOffset = 0)
+    {
+
+		$this->name = $name;
+        HTML_Common::HTML_Common($attributes, $tabOffset);
+        $attr = array('name' => $name, 'size' => $size);
+        if ($multiple) {
+            $attr['multiple'] = 'multiple';
+        }
+        $this->updateAttributes($attr);
+        $this->setSelectedValues(array());
+    }
+    
+
+    /**
+     * Sets the default values of the select box
+     * 
+     * @param     mixed    $values  Array or comma delimited string of selected values
+     * @since     1.0
+     * @access    public
+     * @return    void
+     * @throws    
+     */
+    function setSelectedValues($values)
+    {
+		//print "::".$values."::<br>";
+		
+		if (is_string($values)) {
+			$values = split("[ ]?,[ ]?", $values);
+        }
+        $this->_values = $values;  
+
+	}
+    
+    /**
+     * Returns an array of the selected values
+     * 
+     * @since     1.0
+     * @access    public
+     * @return    array of selected values
+     * @throws    
+     */
+    function getSelectedValues()
+    {
+        return $this->_values;
+    }
+
+    /**
+     * Adds a new OPTION to the SELECT
+     *
+     * @param     string    $text       Display text for the OPTION
+     * @param     string    $value      Value for the OPTION
+     * @param     bool      $selected   Whether the option is selected or not
+     * @param     mixed     $attributes Either a typical HTML attribute string 
+     *                                  or an associative array
+     * @since     1.0
+     * @access    public
+     * @return    void
+     * @throws    
+     */
+    function addOption($text, $value, $selected = false, $attributes = null)
+    {
+        if ($selected && !in_array($value, $this->_values)) {
+            $this->_values[] = $value;
+        }
+        
+        $attributes = $this->_parseAttributes($attributes);
+        $attr['value'] = $value;
+        $this->_updateAttrArray($attributes, $attr);
+        $this->_options[] = array('text' => $text, 'attr' => $attributes);
+    }
+    
+    /**
+     * Loads the options from an associative array
+     * 
+     * @param     array    $arr     Associative array of options
+     * @param     mixed    $values  (optional) Array or comma delimited string of selected values
+     * @since     1.0
+     * @access    public
+     */
+    function loadArray($arr, $values=null)
+    {
+        if (!is_array($arr)) {
+            //return new PEAR_ERROR('First argument to HTML_Select::loadArray is not a valid array');
+        }
+        if (isset($values)) {
+            $this->setSelectedValues($values);
+        }
+        while (list($key, $value) = each($arr)) {
+            $this->addOption($key, $value);
+        }
+        return true;
+    }
+    
+    /**
+     * Loads the options from an array with numeric keys, using the
+     * array values as the form values as well as labels.
+     * 
+     * @param     array    $arr     Array of options
+     * @param     mixed    $values  (optional) Array or comma delimited string of selected values
+     * @since     1.2
+     * @access    public
+     */
+    function loadValueArray($arr, $values = null)
+    {
+        if (!is_array($arr)) {
+            //return new PEAR_ERROR("First argument to HTML_Select::loadArray is not a valid array");
+        }
+        if (isset($values)) {
+            $this->setSelectedValues($values);
+        }
+        foreach ($arr as $value) {
+            $this->addOption($value, $value);
+        }
+        return true;
+    }
+    
+    /**
+     * Loads the options from DB_result object
+     * 
+     * If no column names are specified the first two columns of the result are
+     * used as the text and value columns respectively
+     * @param     object    $db     DB object (assumes $db->last_result
+     * @param     string    $textCol    (optional) Name of column to display as the OPTION text 
+     * @param     string    $valueCol   (optional) Name of column to use as the OPTION value 
+     * @param     mixed     $values     (optional) Array or comma delimited string of selected values
+     * @since     1.0
+     * @access    public
+     */
+    function loadDbResult(&$db, $textCol=null, $valueCol=null, $values=null)
+    {
+
+         if (isset($values)) {
+            $this->setSelectedValues($values);
+        }
+		foreach($result = $db->getRows() as $key => $val) {
+		  //$selected = ($_REQUEST[$this->name] == $val[$valueCol]) ? "true" : "";
+          $this->addOption($val[$textCol], $val[$valueCol]);
+        }
+        return true;
+    }
+    
+    /**
+     * Queries a database and loads the options from the results
+     *
+     * @param     string    $sql        SQL query string
+     * @param     string    $textCol    (optional) Name of column to display as the OPTION text 
+     * @param     string    $valueCol   (optional) Name of column to use as the OPTION value 
+     * @param     mixed     $values     (optional) Array or comma delimited string of selected values
+     * @since     1.1
+     * @access    private
+     * @return    void
+     * @throws    
+     */
+    function loadQuery($sql, $textCol=null, $valueCol=null, $values=null)
+    {
+        $result = $db->query($sql);
+        return $this->loadDbResult($result, $textCol, $valueCol, $values);
+    }
+
+    
+    /**
+     * Returns the SELECT in HTML
+     *
+     * @since     1.0
+     * @access    public
+     * @return    string
+     * @throws    
+     */
+    function toHtml()
+    {
+        $tabs = $this->_getTabs();
+        $name = $this->_attributes['name'];
+        $strHtml = $tabs;
+        if ($this->_comment) {
+            $strHtml .= "<!-- $this->_comment -->\n$tabs";
+        }
+        $strHtml .=
+            '<select' . $this->_getAttrString($this->_attributes) . '>';
+        foreach ($this->_options as $option) {
+            if (@in_array($option['attr']['value'], $this->_values)) {
+                $option['attr']['selected'] = 'selected';
+            }
+            $attrString = $this->_getAttrString($option['attr']);
+            $strHtml .=
+                '<option' . $attrString . '>' .
+                htmlspecialchars($option['text']) . '</option>';
+        }
+        $strHtml .= '</select>';
+        return $strHtml;
+    }
+    
+}
+?>
