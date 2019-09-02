@@ -26,7 +26,9 @@ session_start();
 /* Global Exception Handler */
 function exception_handler($e) {
 	//Logger::DB(1,"Uncaught Exception: ".$e->getMessage());
+	print_r("<pre>");
 	var_dump($e);
+	print_r("</pre>");
 	die();
 	/*
 	global $_CONFIG;

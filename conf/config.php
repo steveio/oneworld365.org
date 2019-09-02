@@ -12,7 +12,7 @@ date_default_timezone_set('Europe/London');
 // config.......
 
 // db connection... (@todo - move into $_CONFIG for consistancy)
-$dsn = array("dbhost" => "localhost","dbuser" => "", "dbpass" => "","dbname" => "","dbport" => "5432");
+$dsn = array("dbhost" => "localhost","dbuser" => "oneworld365_pgsql", "dbpass" => "tH3a1LAn6iA","dbname" => "oneworld365","dbport" => "5432");
 
 
 // Solarium
@@ -75,7 +75,7 @@ $_CONFIG = array(
 	// site specific
 	'site_id' => 0,
 	'brand' => 'oneworld365.org',
-	'url' => 'http://www.oneworld365.org',
+	'url' => 'http://77.68.14.77',
 	'root_path' => ROOT_PATH,
 	'company_home' => "/company",
 	'placement_home' => "/placement",

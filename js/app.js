@@ -65,9 +65,11 @@ $(document).ready(function(){
 
 		// pass visibility of refine search panel
 		fq = fq+'&rf='+rf;
+		//var apiUri = "http://api.oneworld365.org/search";
+		var apiUri = "http://77.68.14.77/search";
 	
 		$.ajax({
-		     url:"http://api.oneworld365.org/search"+url+fq,
+		     url:apiUri+url+fq,
 		     dataType: 'jsonp', // Notice! JSONP <-- P (lowercase)
 		     success:function(json){
 		    	 if (json.status == 1) {
