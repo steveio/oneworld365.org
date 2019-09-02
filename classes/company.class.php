@@ -102,7 +102,7 @@ class Company {
 			    $sql = "SELECT id FROM ".$_CONFIG['company_table']." WHERE status = 1 AND last_updated > last_indexed";
 			    break;
 			case "INDEX_LIST_DELTA_SOLR" :
-			    $sql = "SELECT id FROM ".$_CONFIG['company_table']." WHERE status = 1 AND last_updated > last_indexed_solr AND c.profile_filter_from_search != 't'";
+			    $sql = "SELECT id FROM ".$_CONFIG['company_table']." WHERE status = 1 AND last_updated > last_indexed_solr AND profile_filter_from_search != 't'";
 			    break;
 			case "INDEX_LIST_ALL" :
 			    $sql = "SELECT id FROM ".$_CONFIG['company_table']." WHERE profile_filter_from_search != 't'";
