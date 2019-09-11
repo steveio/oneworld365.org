@@ -192,7 +192,7 @@ class CompanyProfile extends AbstractProfile {
 	public function GetCompanyProfileUrl()
 	{
   		global $_CONFIG;  		
-  		return $_CONFIG['url'].$_CONFIG['company_home']."/".$this->GetUrlName();
+  		return $_CONFIG['url']."/company/".$this->GetUrlName();
 	}
 
 	public function SetUrlName($sUrlName) {
@@ -292,7 +292,7 @@ class CompanyProfile extends AbstractProfile {
   	
 	public function GetProfileUrl() {
   		global $_CONFIG;  		
-  		return $_CONFIG['url'].$_CONFIG['company_home']."/".$this->GetUrlName();
+  		return $_CONFIG['url']."/company/".$this->GetUrlName();
   	}
   	
   	public function GetCompanyLogoUrl($size = "_sm")
@@ -1291,12 +1291,12 @@ class CompanyProfile extends AbstractProfile {
 				'profile_type_label' => $this->GetProfileTypeLabel($this),
 				'title' => $this->GetTitle(),
 				'desc_short' => $this->cleanText($this->GetDescShort()),
-		        'desc_short_160' => $this->cleanText($this->GetDescShort(160)),
+		        	'desc_short_160' => $this->cleanText($this->GetDescShort(160)),
 				'profile_url' => $this->GetProfileUrl(),
 				'profile_uri' => "/company/".$this->GetUrlName(),
 				"company_name" => $this->GetCompanyName(),
-		        "company_logo_url" => $this->GetCompanyLogoUrl(),
-    		    "company_profile_url" => $this->GetCompanyProfileUrl(),	    
+		        	"company_logo_url" => $this->GetCompanyLogoUrl(),
+    		    		"company_profile_url" => $this->GetCompanyProfileUrl(),	    
 				"logo_url" => $aImageDetails['LOGO']['URL'],
 				"image_url_small" => $aImageDetails['SMALL']['URL'],
 				"image_url_medium" => $aImageDetails['MEDIUM']['URL'],
