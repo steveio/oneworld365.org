@@ -138,9 +138,9 @@ class SolrMoreLikeSearch extends SolrSearch {
 			throw $e;
 		}
 
-		/*
 		$aResult = array();
 
+		/*
 		if ($resultset->getNumFound() >= 1) {
 			foreach ($resultset as $document) {
 				$this->aId[] = array('profile_id' => $document->profile_id,'profile_type' => 1);

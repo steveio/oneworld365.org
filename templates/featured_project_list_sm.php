@@ -6,6 +6,7 @@ $strProfileType = $this->Get('PROFILE_TYPE');
 
 foreach($aProfile as $oProfile)
 {
+if (!is_object($oProfile)) continue;
 $oProfile->GetImages();
 $aImageDetails = $oProfile->GetImageUrlArray();
 ?>

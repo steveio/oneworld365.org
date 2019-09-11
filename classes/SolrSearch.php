@@ -548,9 +548,13 @@ class SolrSearch {
 		$aFiltered = array();
 	
 		
-		foreach($facet as $name => $count) {
-			if (in_array($name,$aActivityByCategory[$category_id])) {
-				$aFiltered[$name] = $count;
+		foreach($facet as $name => $count) 
+		{
+			if (is_array($aActivityByCategory[$category_id]))
+			{
+				if (in_array($name,$aActivityByCategory[$category_id])) {
+					$aFiltered[$name] = $count;
+				}
 			}
 		}
 
