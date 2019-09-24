@@ -6,7 +6,7 @@ class IPAddress {
 	
 	
 	public static function GetVisitorIP() {
-		$ipString = (getenv(HTTP_X_FORWARDED_FOR)) ?  getenv(HTTP_X_FORWARDED_FOR) :  getenv(REMOTE_ADDR);
+		$ipString = (defined('HTTP_X_FORWARDED_FOR') && getenv('HTTP_X_FORWARDED_FOR')) ?  getenv(HTTP_X_FORWARDED_FOR) :  getenv(REMOTE_ADDR);
 		if (preg_match("/\,/",$ipString)) {
 			$addr = explode(",",$ipString);
 			$ip = $addr[sizeof($addr)-1];

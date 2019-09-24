@@ -97,8 +97,8 @@ class User {
 		// check for required feilds
 
 		foreach($_POST as $k => $v) {
-			if (ereg("^p_",$k)) {
-				$k = ereg_replace("p_","",$k);
+			if (preg_match("/^p_/",$k)) {
+				$k = preg_replace("/p_/","",$k);
 				$this->$k = $v;
 			}
 		}
@@ -267,7 +267,7 @@ class AccountApplication {
 			$aResponse['msg']['password'] = "Password should be between 4 and 20 characters.";
 		}
 		
-		if (!ereg("^([a-zA-Z0-9]*)$",$a['password'])) {
+		if (!preg_match("/^([a-zA-Z0-9]*)$/",$a['password'])) {
 			$aResponse['msg']['password'] = "Password should contain only letters and numbers.";
 		}
 

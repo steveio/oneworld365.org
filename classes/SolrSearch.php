@@ -425,9 +425,14 @@ class SolrSearch {
 	public function filterCountryByContinentName($facet,$continent_name) {
 	
 		global $db;
-	
+
+		if (preg_match("/Australasia/",$continent_name)) $continent_name = "Australasia / Pacific";
+
 		$oCountry = new Country($db);
 		$aCountry = $oCountry->GetByContinentName(preg_replace("/\"/","",$continent_name));
+
+		if (!is_array($aCountry)) return array();
+
 		foreach($aCountry as $c) {
 			$aCountries[trim($c['name'])] = $c['id'];
 		}
@@ -440,6 +445,7 @@ class SolrSearch {
 		}
 		return $aFilteredCountries;
 	}
+
 	/*
 	public function mapDurationLabels($facet) {
 	

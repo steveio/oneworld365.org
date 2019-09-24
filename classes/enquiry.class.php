@@ -526,9 +526,10 @@ class Enquiry {
 
 		global $db;
 
+
 		Validation::Sanitize($a);
 
-		Validation::AddSlashes($a);
+		Validation::AddSlashes($a,true);
 
 		if (!$this->Validate($a,$aResponse)) return false;
 
@@ -609,6 +610,9 @@ class Enquiry {
 	private function Validate($a,&$aResponse) {
 
 		if (DEBUG) Logger::Msg(get_class($this)."::".__FUNCTION__."()");
+
+		$aResponse = array();
+		$aResponse['msg'] = array();
 
 		if (strlen($a['name']) < 1) {
 			$aResponse['msg']['name'] = "Please enter your full name";
@@ -803,8 +807,8 @@ class Enquiry {
 					,'".$a['addr3']."'
 					,'".$a['apply_letter']."'
 					,'".$a['experience']."'
-		$sDtSQL
-		,'".$ip."'
+					$sDtSQL
+					,'".$ip."'
 					,now()::timestamp
 					,0
 					,".$_CONFIG['site_id']."

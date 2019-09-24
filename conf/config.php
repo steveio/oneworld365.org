@@ -1,7 +1,7 @@
 <?
 
 
-ini_set('display_errors', 1);
+ini_set('display_errors', 0);
 ini_set('log_errors', 1);
 ini_set('error_log', '/www/vhosts/www.oneworld365.org/logs/php_error.log'); 
 error_reporting(E_ALL &~ E_NOTICE &~ E_STRICT);
@@ -75,7 +75,7 @@ $_CONFIG = array(
 	// site specific
 	'site_id' => 0,
 	'brand' => 'oneworld365.org',
-	'url' => 'http://77.68.14.77',
+	'url' => 'http://www.oneworld365.org',
 	'root_path' => ROOT_PATH,
 	'company_home' => "/company",
 	'placement_home' => "/placement",

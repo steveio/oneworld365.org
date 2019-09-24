@@ -266,6 +266,7 @@ class Country {
 		$sql = "SELECT c.id,c.name FROM country c, continent ct WHERE c.continent_id = ct.id and ct.name = '".$continent_name."' ORDER BY c.name ASC;";
 	
 		$db->query($sql);
+
 		return $db->getRows();
 	
 	}

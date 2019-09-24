@@ -81,6 +81,7 @@ class SolrCombinedProfileSearch extends SolrSearch {
 	    // reindex the array so placement keys for each company are a sequential numeric index
 	    $aIdIndexedNumeric = array();
 	    $i = 0;
+	    $aId = array();
 	    foreach($aResult as $company_id => $aPlacementId) {
 	        $aId[$i++] = $aPlacementId;
 	    }
