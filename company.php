@@ -320,7 +320,7 @@ if ($oProfile->GetListingType() >= BASIC_LISTING)
     if (is_array($aPlacement) && count($aPlacement) > 6) $aPlacement = array_slice($aPlacement, 0, 6);
 }
 
-if (count($aPlacement) >= 1)
+if (is_array($aPlacement) && count($aPlacement) >= 1)
 {
 ?>
 <div class="row-fluid">

@@ -12,7 +12,7 @@ header( 'Pragma: no-cache' );
 /* required extranet classes */
 require_once('./conf/config.php');
 require_once($_CONFIG['root_path'].'/classes/login.class.php');
-require_once($_CONFIG['root_path'].'/lib/recaptcha/recaptchalib.php');
+//require_once($_CONFIG['root_path'].'/lib/recaptcha/recaptchalib.php');
 require_once($_CONFIG['root_path']."/header_new.php");
 require_once($_CONFIG['root_path']."/footer_new.php");
 require_once($_CONFIG['root_path']."/classes/EmailSender.php");

@@ -1,4 +1,7 @@
 <?php
+
+define('TEST_MODE',false);
+
 /*
 * Created on 07-Nov-2008
 * Author: Steve Edwards (13/06/2008)
