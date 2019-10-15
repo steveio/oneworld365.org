@@ -304,12 +304,12 @@ class SalesEnquiry {
 					(
 					".$this->GetId().",
 					".$this->GetWebsiteId().",
-					'".addslashes($this->GetName())."',
-					'".addslashes($this->GetRole())."',
-					'".addslashes($this->GetCompanyName())."',
-					'".addslashes($this->GetEmail())."',
+					'".pg_escape_string(addslashes($this->GetName()))."',
+					'".pg_escape_string(addslashes($this->GetRole()))."',
+					'".pg_escape_string(addslashes($this->GetCompanyName()))."',
+					'".pg_escape_string(addslashes($this->GetEmail()))."',
 					'".addslashes($this->GetTel())."',
-					'".addslashes($this->GetEnquiry())."',
+					'".pg_escape_string(addslashes($this->GetEnquiry()))."',
 					'".$this->GetIpAddress()."',
 					now()::timestamp
 					);
