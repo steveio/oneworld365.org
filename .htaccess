@@ -34,11 +34,8 @@
     # Enforce www
     # If you have subdomains, you can add them to
     # the list using the "|" (OR) regex operator
-    #RewriteCond %{HTTP_HOST} !^(www) [NC]
-    #RewriteRule ^(.*)$ http://www.oneworld365.org/$1 [L,R=301]
-
-    #RewriteCond %{HTTP_HOST} !^(www.oneworld365.org) [NC]
-    #RewriteRule ^(.*)$ http://www.oneworld365.org/$1 [L,R=301]
+    RewriteCond %{HTTP_HOST} ^oneworld365.org [NC]
+    RewriteRule ^(.*)$ http://www.oneworld365.org/$1 [L,R=301]
 
     # Checks to see if the user is attempting to access a valid file,
     # such as an image or css document, if this isn't true it sends the
