@@ -112,6 +112,11 @@ class Review {
 	    return $this->iTotalReviews;
 	}
 	
+	public function GetStatus()
+	{
+	    return $this->status;
+	}
+	
 	public function SetStatus($id,$iStatus) {
 
 		global $db;
@@ -154,6 +159,31 @@ class Review {
 			}
 			return $aId;
 		}
+	}
+
+	public function GetById($id) {
+
+	    global $db;
+	    
+	    if (!is_numeric($id)) return false;
+
+	    $sql = $sql = "SELECT
+        					r.*
+        				FROM review r
+        				WHERE id = ".$id."  
+                        ";
+
+	    $db->query($sql);
+
+	    $aRow = $db->getRow();
+
+	    foreach($aRow as $k => $v) {
+	        $a[$k] = is_string($v) ? stripslashes($v) : $v;
+	    }
+
+	    $this->SetFromArray($a);
+	    
+	    return true;
 	}
 
 	public function Get($link_id,$link_to, $status = 1,$iPageSize = 30, $iStart = 0) {
@@ -320,6 +350,33 @@ class Review {
 
 	}
 
+	public function Update(&$aResponse) {
+	    
+	    global $db,$_CONFIG;
+	    
+	    if (!is_numeric($this->GetId())) throw new Exception("Update failed invalid id");
+
+	    $sql = "UPDATE review SET 
+					name = '".$this->GetName()."',
+					email = '".$this->GetEmail()."',
+    				age = ".$this->GetAge().",
+    				gender = '".$this->GetGender()."',
+					nationality = '".$this->GetNationality()."',
+					title = '".$this->GetTitle()."',
+    				review = '".$this->GetReview()."',
+    				rating = ".$this->GetRating().",
+					status = ".$this->GetStatus()."
+                WHERE id = ".$this->GetId()."
+                ";
+	    
+	    if (!$db->query($sql)) {
+	        return false;
+	    } else {
+	        return true;
+	    }
+	    
+	}
+	
 	public function SetFromArray($a, $bStripSlashes = true) {
 		foreach($a as $k => $v) {
 			if ($bStripSlashes) {
@@ -331,6 +388,29 @@ class Review {
 	}
 
 
+	public function GetLinkedContentDesc()
+	{
+	    global $db; 
+	    
+	    $strDetails = '';
+	    if ($this->GetLinkTo() == 'COMPANY')
+	    {
+	        $oCompany = new Company($db);
+	        $objCompany = $oCompany->GetById($this->GetLinkId(),"title,url_name");
+	        $strDetails = "Company: ".$objCompany->title;
+	    } elseif ($this->GetLinkTo() == 'PLACEMENT') {
+	        $oProfile = new PlacementProfile();
+	        $objProfile = $oProfile->GetProfileById($this->GetLinkId(),$key = "PLACEMENT_ID");
+	        $strDetails = "Placement: ".$objProfile->company_name." : ".$objProfile->title;
+	    } elseif ($this->GetLinkTo() == 'ARTICLE') {
+	        $oArticle = new Article();
+	        $oArticle->GetById($this->GetLinkId());
+	        $strDetails = "Article: ".$oArticle->GetTitle();
+	    }
+	    
+	    return $strDetails;
+	    
+	}
 
 }
 
