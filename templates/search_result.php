@@ -127,7 +127,15 @@
             	<h3><a href="<%= profile_url %>" title="<%= desc_short %>" target="_new"><%= title %></a></h3>
 			</div>
         <% } else { %>
-			<% if (image_url_medium.length > 1) { %>
+
+                        <% if (logo_url.length > 1) { %>
+                        <div class="pull-right logo">
+                        	<a title="<%= title %>" href="<%= profile_url %>" class="thumbnail">
+                        	<img src="<%= logo_url %>" alt="<%= title %>" />
+                        	</a>
+                        </div>
+                        <% } else if (image_url_medium.length > 1) {  %>
+
       			<a title="<%= title %>" href="<%= profile_url %>" class="thumbnail">
     			<img class="img-responsive img-rounded" src="<%= image_url_medium %>" alt="<%= title %>" />		
       			</a>
@@ -135,12 +143,12 @@
 			<% } %>
 
 			<div class="details">
-            	<h4><a href="<%= profile_url %>" title="<%= desc_short %>"><%= title %></a></h4>
+	            	<h4><a href="<%= profile_url %>" title="<%= desc_short %>"><%= title %></a></h4>
 				<% if (image_url_medium.length < 1) { %>
 					<p><%= desc_short %>
 				<% } else { %>
-                    <p><%= desc_short_160 %>
-                <% } %>
+                    	<p><%= desc_short_160 %>
+        <% } %>
 			</div>
         <% } %>
     	</div>

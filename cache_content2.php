@@ -19,7 +19,7 @@ include("/www/vhosts/oneworld365.org/htdocs/conf/config.php");
 include(ROOT_PATH."/classes/db_pgsql.class.php");
 include(ROOT_PATH."/classes/logger.php");
 
-ini_set('display_errors', 1);
+ini_set('display_errors', 0);
 
 $db = new db($dsn,$debug = false);
 

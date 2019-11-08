@@ -3,17 +3,6 @@
 require_once("./classes/BalancedDistributor.php");
 
 
-// slider includes
-$oCssInclude = new CssInclude();
-$oCssInclude->SetHref('/css/layerslider.css?&r=1');
-$oCssInclude->SetMedia('screen');
-
-$oJsInclude = new JsInclude();
-$oJsInclude->SetSrc("/js/layerslider.kreaturamedia.jquery.js");
-
-$sCSSInclude = $oCssInclude->Render();
-$sJSInclude = $oJsInclude->Render();
-
 
 // sponsored company logos in footer
 $oCompany = new Company($db);
