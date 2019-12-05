@@ -186,7 +186,7 @@ class Review {
 	    return true;
 	}
 
-	public function Get($link_id,$link_to, $status = 1,$iPageSize = 30, $iStart = 0) {
+	public function Get($link_id,$link_to, $status = 1) {
 
 		if (DEBUG) Logger::Msg(get_class($this)."::".__FUNCTION__."()");
 
@@ -218,17 +218,9 @@ class Review {
 		if ($db->getNumRows() >= 1) {
 			$aRows = $db->getRows(PGSQL_ASSOC);
 			$aResult = array();
-			$i = 0;
-
+			
 			foreach($aRows as $aRow)
-			{
-                if ($i<$iStart || $i > $iStart + $iPageSize)
-                {
-                    $i++;
-                    continue;
-                }
-                $i++;
-                    
+			{                    
 				foreach($aRow as $k => $v) {
 					$a[$k] = is_string($v) ? stripslashes($v) : $v;
 				}
@@ -242,6 +234,104 @@ class Review {
 		}
 	}
 
+	public function GetReport()
+	{
+
+	    global $db;
+
+	    $sql = "
+        select * from 
+        (
+    	    select
+            r.link_to ||'<br />'||a.title||'<br />'||'<a href=\"'||m.section_uri||'\">'||m.section_uri||'</a>' as posted_to 
+    	    ,r.id as post_id
+    	    ,r.title ||'<br />'||r.review as post_details
+            ,r.name ||'<br />'||r.email||'<br />'||r.ip_addr as posted_by
+    	    ,r.date::date as post_date
+            ,case 
+                when r.status = 0 then 'PENDING'
+                when r.status = 1 then 'APPROVED'
+                when r.status = 2 then 'REJECTED'
+            end as post_status 
+    	    from
+    	    review r
+    	    ,article a
+    	    ,article_map m
+    	    where
+            1=1
+    	    --r.status = 1
+    	    --and r.date > NOW() - INTERVAL '3 MONTH'
+    	    and r.link_to = 'ARTICLE'
+    	    and r.link_id = a.id
+    	    and a.id = m.article_id
+    	    UNION
+    	    select
+            r.link_to ||'<br />'||c.title||'<br /><a href=\"http://www.oneworld365.org/company/'||c.url_name||'\" target=_new>/company/'||c.url_name||'</a>' as posted_to 
+    	    ,r.id as post_id
+    	    ,r.title||'<br />'||r.review as post_details
+            ,r.name ||'<br />'||r.email||'<br />'||r.ip_addr as posted_by
+            ,r.date::date as post_date
+            ,case 
+                when r.status = 0 then 'PENDING'
+                when r.status = 1 then 'APPROVED'
+                when r.status = 2 then 'REJECTED'
+            end as post_status 
+    	    from
+    	    review r
+    	    ,company c
+    	    where
+            1=1
+    	    --r.status = 1
+    	    --and r.date > NOW() - INTERVAL '3 MONTH'
+    	    and r.link_to = 'COMPANY'
+    	    and r.link_id = c.id
+    	    UNION
+    	    select
+            r.link_to ||' '||p.title||' '||'/'||c.url_name ||'/'|| p.url_name as posted_to
+    	    ,r.id as post_id
+    	    ,r.title||'<br />'||r.review as post_text
+            ,r.name ||'<br />'||r.email||'<br />'||r.ip_addr as posted_by
+            ,r.date::date as post_date
+            ,case 
+                when r.status = 0 then 'PENDING'
+                when r.status = 1 then 'APPROVED'
+                when r.status = 2 then 'REJECTED'
+            end as post_status 
+    	    from
+    	    review r
+    	    ,profile_hdr p
+    	    ,company c
+    	    where
+            1=1
+    	    --r.status = 1
+    	    --and r.date > NOW() - INTERVAL '3 MONTH'
+    	    and r.link_to = 'PLACEMENT'
+    	    and r.link_id = p.id
+    	    and p.company_id = c.id
+        ) q1
+        order by q1.post_date desc
+
+            ";
+
+	    $db->query($sql);
+	    
+	    if ($db->getNumRows() >= 1) {
+	        $aRows = $db->getRows(PGSQL_ASSOC);
+	        $aResult = array();
+	        
+	        foreach($aRows as $aRow)
+	        {
+	            foreach($aRow as $k => $v) {
+                    $aRow[$k] = (is_string($v)) ? stripslashes($v) : $v;
+	            }
+	            $aResult[] = $aRow;
+	        }
+	        return $aResult;
+	    } else {
+	        return false;
+	    }
+
+	}
 
 	
 	public function GetNextId() {
