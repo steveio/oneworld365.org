@@ -111,7 +111,7 @@ if ($sUri != "")
             
             <div class="span12" style="margin-left: 0px;">
 		<div class="span3">
-	            	<a class="brand" href="/"><img src="<?= $_CONFIG['logo_url'] ?>" alt="<?= $_CONFIG['page_title'] ?>" border="0" /></a>
+	            	<a class="brand" href="/"><img src="<?= $_CONFIG['logo_url'] ?>" alt="One World 365" border="0" /></a>
 		</div>
 		<div class="span8 adbanner_web">
 		<?php if (!OFFLINE) { ?>
