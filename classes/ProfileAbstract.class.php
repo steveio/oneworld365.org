@@ -4,7 +4,7 @@
 /* profile types */
 define("PROFILE_COMPANY",0);
 define("PROFILE_PLACEMENT",1);
-define("PROFILE_VOLUNTEER",2); 
+define("PROFILE_VOLUNTEER",2);
 define("PROFILE_TOUR",3); 
 define("PROFILE_JOB",4);
 define("PROFILE_SUMMERCAMP",5); // company profile
@@ -47,6 +47,8 @@ abstract class AbstractProfile implements TemplateInterface {
 
 	protected $duration_from;
 	protected $duration_to;
+	protected $review_count;
+	protected $review_rating;
 	
 	protected $oDurationRefdataObject;  // object instance of refdata holding duration lookup values	
 	protected $oCostsRefdataObject; // object instance of refdata holding costs lookup label values
@@ -451,7 +453,105 @@ abstract class AbstractProfile implements TemplateInterface {
 		}
 	
 	}
+
+	public function GetLocationLabel() 
+	{
+
+	    if ($this->GetLinkTo() == "COMPANY")
+	    {
+	        if (count($this->country_array) == 1) {
+	            return $this->country_txt;
+	        } else {
+	            return count($this->country_array) ." Destinations";
+	        }
+
+	    } else { // PLACEMENT
+	        if (strlen($this->GetLocation()) > 30 || strlen($this->GetLocation()) < 1)
+	        {
+	            if (count($this->country_array) == 1) {
+	                return $this->country_txt;
+	            } else {
+	                return "Multiple Destinations";
+	            }
+	        } else {
+	            return $this->GetLocation();
+	        }
+	    }
+	}
 	
+	public function GetPriceFromId() {
+	    return $this->price_from_id;
+	}
+	
+	public function GetPriceToId() {
+	    return $this->price_to_id;
+	}
+	
+	public function GetCurrencyId() {
+	    return $this->currency_id;
+	}
+	
+	public function GetCurrencyLabel() {
+	    
+	    if (!is_object($this->GetCurrencyRefdataObject()))
+	    {
+	        $oCurrency = new Refdata(REFDATA_CURRENCY);
+	        $oCurrency->GetByType();
+	        $this->SetCurrencyRefdataObject($oCurrency);
+	    }
+
+	    return $this->GetCurrencyRefdataObject()->GetValueById($this->currency_id);
+	}
+	
+	public function GetPriceFromLabel() 
+	{
+
+	    if (!is_object($this->GetCostsRefdataObject())) {
+	        $oPrice = new Refdata(REFDATA_APPROX_COST);
+	        $oPrice->SetOrderBySql(' sort_order ASC');
+	        $oPrice->GetByType();
+	        $this->SetCostsRefdataObject($oPrice);
+	    }
+
+	    return $this->GetCostsRefdataObject()->GetValueById($this->price_from_id);
+	}
+
+	public function GetPriceToLabel() 
+	{
+
+	    if (!is_object($this->GetCostsRefdataObject())) {
+
+	        $oPrice = new Refdata(REFDATA_APPROX_COST);
+	        $oPrice->SetOrderBySql(' sort_order ASC');
+	        $oPrice->GetByType();
+	        $this->SetCostsRefdataObject($oPrice);
+	    }
+	    
+	    return $this->GetCostsRefdataObject()->GetValueById($this->price_to_id);
+	}
+
+	public function GetReviewRating()
+	{
+	    if (!isset($this->review_count) || !isset($this->review_rating))
+	    {
+    	    $oReview = new Review();
+    	    $aReview = $oReview->GetReviewRating($this->GetId(),$this->GetLinkTo(), 1);
+
+    	    $this->review_count = isset($aReview['count']) ? $aReview['count'] : 0;
+    	    $this->review_rating = isset($aReview['rating']) ? $aReview['rating'] : null;
+	    }
+	}
+
+	public function GetReviewCount()
+	{
+	    return $this->review_count;
+	}
+
+	public function GetRating() 
+	{
+	    return $this->review_rating;
+	}
+
 	public function SetOrgTypeRefdataObject($oRefdata) {
 		$this->oOrgTypeRefdataObject = $oRefdata;
 	}
