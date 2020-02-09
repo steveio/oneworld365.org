@@ -23,7 +23,8 @@ class SolrCombinedProfileSearch extends SolrSearch {
 		
 	}
 
-	public function processResult() {
+	public function processResult() 
+	{
 
 		$aResult = array();
 		
@@ -39,10 +40,10 @@ class SolrCombinedProfileSearch extends SolrSearch {
 
 			if (is_array($aProfileId) && count($aProfileId) >= 1)
 				$aPlacement = PlacementProfile::Get("ID_LIST_SEARCH_RESULT",$aProfileId);			
-
+				
 			if (is_array($aCompanyId) && count($aCompanyId) >= 1)
 				$aCompany = CompanyProfile::Get("ID_SORTED",$aCompanyId);
-			
+
 			$this->_aProfile = array();
 
 			foreach($aProfileId as $idx => $id)
@@ -67,6 +68,7 @@ class SolrCombinedProfileSearch extends SolrSearch {
 			$this->setFacetQueryResult();
 
 		} // end if projects found					
+ 		
 	}
 
 	protected function _balancePlacementDistribution()
@@ -77,7 +79,7 @@ class SolrCombinedProfileSearch extends SolrSearch {
 	        if ($doc->profile_type == PROFILE_PLACEMENT)
 	           $aResult[$doc->company_id][] = $doc->profile_id;
 	    }
-	    
+
 	    // reindex the array so placement keys for each company are a sequential numeric index
 	    $aIdIndexedNumeric = array();
 	    $i = 0;

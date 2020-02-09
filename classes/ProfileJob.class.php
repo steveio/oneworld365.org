@@ -76,7 +76,8 @@ class JobProfile extends PlacementProfile {
 		parent::GetActivityInfo();
 		parent::GetCountryInfo();
 		parent::GetImages();
-		
+		parent::GetReviewRating();
+
 		$this->SetJobOptions();
 
 		return TRUE;
@@ -279,14 +280,6 @@ class JobProfile extends PlacementProfile {
 	public function GetDurationToId() {
 		return $this->duration_from_id;
 	}	
-	
-	public function GetDurationFromLabel() {
-		return $this->GetDurationRefdataObject()->GetValueById($this->duration_from_id);
-	}
-
-	public function GetDurationToLabel() {
-		return $this->GetDurationRefdataObject()->GetValueById($this->duration_to_id);
-	}
 	
 }
 

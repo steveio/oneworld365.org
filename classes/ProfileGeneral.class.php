@@ -55,12 +55,13 @@ class GeneralProfile extends PlacementProfile implements ProfileInterface {
 		foreach($oResult as $k => $v) {
 			$this->$k = is_string($v) ? stripslashes($v) : $v;
 		}
-				
+
 		parent::GetCategoryInfo();
 		parent::GetActivityInfo();
 		parent::GetCountryInfo();
 		parent::GetImages();
 		parent::SetCompanyLogo();
+		parent::GetReviewRating();
 
 		return TRUE;	
 	}
@@ -218,14 +219,6 @@ class GeneralProfile extends PlacementProfile implements ProfileInterface {
 		return $this->duration_to_id;
 	}
 
-	public function GetDurationFromLabel() {
-		return $this->GetDurationRefdataObject()->GetValueById($this->duration_from_id);
-	}
-
-	public function GetDurationToLabel() {
-		return $this->GetDurationRefdataObject()->GetValueById($this->duration_to_id);
-	}
-	
 	public function GetPriceFromId() {
 		return $this->price_from_id;
 	}
@@ -236,18 +229,6 @@ class GeneralProfile extends PlacementProfile implements ProfileInterface {
 	
 	public function GetCurrencyId() {
 		return $this->currency_id;
-	}
-
-	public function GetCurrencyLabel() {
-		return $this->GetCurrencyRefdataObject()->GetValueById($this->currency_id);
-	}
-
-	public function GetPriceFromLabel() {
-		return $this->GetCostsRefdataObject()->GetValueById($this->price_from_id);
-	}
-
-	public function GetPriceToLabel() {
-		return $this->GetCostsRefdataObject()->GetValueById($this->price_to_id);
 	}
 	
 }

@@ -385,7 +385,7 @@ $(document).ready(function(){
 	}
 	
 	function processProfileData(profileData,profileType) {
-		
+
 		// profile data -----------------------------------------
 		var ProfileSummary = Backbone.Model.extend({
 		    defaults: {

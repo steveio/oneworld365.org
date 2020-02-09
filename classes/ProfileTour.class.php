@@ -80,11 +80,12 @@ class TourProfile extends PlacementProfile {
 		parent::GetActivityInfo();
 		parent::GetCountryInfo();
 		parent::GetImages();
+		parent::GetReviewRating();
 
 		$this->SetTransportIdList();
 		$this->SetMealsIdList();
 		$this->SetAccomodationIdList();
-		
+
 		return TRUE;		
 	}
 
@@ -246,46 +247,6 @@ class TourProfile extends PlacementProfile {
 		return $this->tour_requirements;
 	}
 
-	public function GetDurationFromId() {
-		return $this->duration_from_id;
-	}
-
-	public function GetDurationToId() {
-		return $this->duration_to_id;
-	}
-
-	public function GetDurationFromLabel() {
-		return $this->GetDurationRefdataObject()->GetValueById($this->duration_from_id);
-	}
-
-	public function GetDurationToLabel() {
-		return $this->GetDurationRefdataObject()->GetValueById($this->duration_to_id);
-	}
-	
-	public function GetPriceFromId() {
-		return $this->price_from_id;
-	}
-
-	public function GetPriceToId() {
-		return $this->price_to_id;
-	}
-	
-	public function GetCurrencyId() {
-		return $this->currency_id;
-	}
-
-	public function GetCurrencyLabel() {
-		return $this->GetCurrencyRefdataObject()->GetValueById($this->currency_id);
-	}
-
-	public function GetPriceFromLabel() {
-		return $this->GetCostsRefdataObject()->GetValueById($this->price_from_id);
-	}
-
-	public function GetPriceToLabel() {
-		return $this->GetCostsRefdataObject()->GetValueById($this->price_to_id);
-	}
-	
 	
 	public function GetGroupSizeId() {
 		return $this->group_size_id;

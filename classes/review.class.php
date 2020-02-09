@@ -234,6 +234,43 @@ class Review {
 		}
 	}
 
+	public function GetReviewRating($link_id,$link_to, $status = 1) {
+	    
+	    global $db;
+
+	    if (!is_numeric($link_id)) return false;
+
+	    $linkIdConstraint = " AND link_id = ".$link_id;
+	        
+        if (strlen($link_to) < 1) return false;
+
+        $linkToConstraint = " AND link_to = '".$link_to."'";
+            
+        if (!is_numeric($status)) return false;
+
+        $statusConstraint = " AND status = ".$status;
+
+        $sql = "SELECT
+        	    link_id
+        	    ,count(*)
+        	    ,FLOOR(AVG(r.rating)) as rating
+        	    FROM review r
+        	    WHERE 1=1
+				".$linkIdConstraint."
+				".$linkToConstraint."
+				".$statusConstraint."
+        	    GROUP BY link_id";
+
+        $db->query($sql);
+
+        $aResult = array();
+
+        if ($db->getNumRows() == 1)
+            $aResult = $db->getFirstRow($sql);
+
+        return $aResult;
+	}
+
 	public function GetReport()
 	{
 

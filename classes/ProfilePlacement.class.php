@@ -195,7 +195,7 @@ class PlacementProfile extends AbstractProfile {
 		if ($_CONFIG['placement_table'] == "profile_hdr") {
 			$with_oid = "p.oid,";
 		}
-		
+
 		$sSql = "SELECT	
 						".$with_oid."
 						p.id
@@ -261,6 +261,11 @@ class PlacementProfile extends AbstractProfile {
 					$oProfile->SetFromObject($o);
 					$oProfile->GetImages();
 					$oProfile->SetCompanyLogo();
+					$oProfile->GetCategoryInfo();
+					$oProfile->GetActivityInfo();
+					$oProfile->GetCountryInfo();
+					$oProfile->GetReviewRating();
+
 					$aProfile[$oProfile->GetId()] = $oProfile;			
 				}				
 				return $aProfile;
@@ -990,11 +995,8 @@ class PlacementProfile extends AbstractProfile {
 		
 	}
 
-
 	
 	public static function Get($key,$id) {
-
-		if (DEBUG) Logger::Msg(get_class($this)."::".__FUNCTION__."()");
 
 		global $_CONFIG, $db;
 		
@@ -1047,23 +1049,10 @@ class PlacementProfile extends AbstractProfile {
 				$select = "p.id,p.type";
 				$where = "p.last_updated > p.last_indexed_solr AND p.company_id = c.id ";
 				$order_by = " ORDER BY p.title asc ";
-				break;
-				
+				break;				
 			case "ID_LIST_SEARCH_RESULT" :
 				if (!is_array($id) || count($id) < 1) return FALSE;
-				$select = "p.id
-				   ,p.url_name
-				   ,p.title        
-				   ,p.desc_short   
-				   ,p.company_id
-				   ,c.title as company_name
-				   ,c.url as comp_url
-				   ,c.url_name as comp_url_name   
-				   ,p.location
-				   ,p.url
-				   ,p.email
-				";
-				
+				$select = "p.id, p.type";
 				$where = "p.id IN (".implode(",",$id).") AND p.company_id = c.id and c.profile_filter_from_search != 't'";
 				//$order_by = "ORDER BY RANDOM() ";
 				break;
@@ -1072,12 +1061,11 @@ class PlacementProfile extends AbstractProfile {
 				$where = "p.id IN (".implode(",",$id).") AND p.company_id = c.id ";
 				$order_by = "ORDER BY RANDOM() ";
 				break;
-				
 			case "RECENT" :
 				$where = " p.company_id = c.id ";
 				$order_by = " ORDER BY p.last_updated DESC LIMIT 20";
 				break;
-				
+
 		}
 
 		$sql = "SELECT
@@ -1090,29 +1078,22 @@ class PlacementProfile extends AbstractProfile {
 					$order_by
 					;";
 
-		
 		$db->query($sql);
-					
-					
+
 		if ($db->getNumRows() < 1) return array();
-		
-		
-		$aRes = $db->getObjects();
-		
+
+		$aRes = $db->getObjects();		
 		$aProfile = array();
-				
-		foreach($aRes as $o) {
-			
-			
-			$oProfile = new PlacementProfile();
-			$oProfile->SetFromObject($o);
-			$oProfile->GetImages();
-			$oProfile->SetCompanyLogo();
-			$oProfile->GetCountryInfo();
-			$oProfile->GetCategoryInfo();
+
+		foreach($aRes as $o) 
+		{
+		    $oProfile = ProfileFactory::Get($o->type);
+		    $oProfile->GetById($o->id);
+		    $oProfile->GetReviewRating();
+
 			$aProfile[$oProfile->GetId()] = $oProfile;			
 		}
-		
+
 		return $aProfile;
 	}	
 	
@@ -1299,7 +1280,7 @@ class PlacementProfile extends AbstractProfile {
 	public function toJSON() {
 		
 		$aImageDetails = $this->GetImageUrlArray();
-	
+		
 		$fields = array(
 				"id" => $this->GetId(),
 				"profile_type" => 1,
@@ -1316,8 +1297,15 @@ class PlacementProfile extends AbstractProfile {
 				"image_url_medium" => $aImageDetails['MEDIUM']['URL'],
 				"image_url_large" => $aImageDetails['LARGE']['URL'],
 				"country_txt" => "",
-				"duration" => "",
-				"booking_url" => "" 
+				"booking_url" => "",
+		        "location" => $this->GetLocationLabel(),
+		        "price_from" => $this->GetPriceFromLabel(),
+		        "price_to" => $this->GetPriceToLabel(),
+		        "currency_label" => $this->GetCurrencyLabel(),
+		        "duration_from" => $this->GetDurationFromLabel(),
+		        "duration_to" => $this->GetDurationToLabel(),
+		        "review_count" => $this->GetReviewCount(),
+		        "review_rating" => $this->GetRating()
 		);
 	
 		$fields['company_logo_url'] = $this->GetCompanyLogoUrl();

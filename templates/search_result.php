@@ -124,31 +124,40 @@
             </div>
 		    </div>
 			<div class="details">
-            	<h3><a href="<%= profile_url %>" title="<%= desc_short %>" target="_new"><%= title %></a></h3>
+            	<h3><a href="<%= profile_url %>" title="<%= title %>" target="_new"><%= title %></a></h3>
+                <ul>
+                    <li>Rating: <%= review_rating %></li>
+                    <li>Reviews: <%= review_count %></li>
+                    <li>Location: <%= location %></li>
+                    <li>Duration: <%= duration_from %> - <%= duration_to %></li>
+                    <li>Approx Costs: <%= price_from %> - <%= price_to %> <%= currency_label %></li>
+                </ul>
 			</div>
         <% } else { %>
 
-                        <% if (logo_url.length > 1) { %>
-                        <div class="pull-right logo">
-                        	<a title="<%= title %>" href="<%= profile_url %>" class="thumbnail">
-                        	<img src="<%= logo_url %>" alt="<%= title %>" />
-                        	</a>
-                        </div>
-                        <% } else if (image_url_medium.length > 1) {  %>
+                <% if (logo_url.length > 1) { %>
+                   <div class="pull-right logo">
+                      <a title="<%= title %>" href="<%= profile_url %>" class="thumbnail">
+                      <img src="<%= logo_url %>" alt="<%= title %>" />
+                      </a>
+                   </div>
+                <% } else if (image_url_medium.length > 1) {  %>
 
-      			<a title="<%= title %>" href="<%= profile_url %>" class="thumbnail">
-    			<img class="img-responsive img-rounded" src="<%= image_url_medium %>" alt="<%= title %>" />		
-      			</a>
-				<span class="frame-overlay"></span>
-			<% } %>
+      			   <a title="<%= title %>" href="<%= profile_url %>" class="thumbnail">
+    			   <img class="img-responsive img-rounded" src="<%= image_url_medium %>" alt="<%= title %>" />		
+      			   </a>
+				   <span class="frame-overlay"></span>
+  			    <% } %>
 
-			<div class="details">
-	            	<h4><a href="<%= profile_url %>" title="<%= desc_short %>"><%= title %></a></h4>
-				<% if (image_url_medium.length < 1) { %>
+			     <div class="details">
+	             <h4><a href="<%= profile_url %>" title="<%= desc_short %>"><%= title %></a></h4>
+
+				 <% if (image_url_medium.length < 1) { %>
 					<p><%= desc_short %>
-				<% } else { %>
-                    	<p><%= desc_short_160 %>
-        <% } %>
+				 <% } else { %>
+                   <p><%= desc_short_160 %>
+                 <% } %>
+
 			</div>
         <% } %>
     	</div>
@@ -183,7 +192,7 @@
         
         <script src="/js/underscore-min.js"></script>
         <script src="/js/backbone-min.js"></script>
-        <script src="/js/app.js?&version=3.4"></script>
+        <script src="/js/app.js?&version=3.4.<?php print(rand(0,10000)); ?>"></script>
 
     </div>
 </div>

@@ -374,7 +374,7 @@ class SolrSearch {
 	
 
 	public function processResult() {
-		
+			    
 		$aResult = array();
 
 		if ($this->getNumFound() >= 1) {

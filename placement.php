@@ -57,7 +57,6 @@ if (is_numeric($id)) {
 	$t->Set("desc_short", $oProfile->StripLinks(html_entity_decode($oProfile->GetDescShort())));
 	$t->Set("desc_long", $oProfile->StripLinks(html_entity_decode($oProfile->GetDescLong())));
 			
-
 	
 	$oProfile->SetCompanyLogo();
 	if (is_object($oProfile->GetCompanyLogo())) {
@@ -68,10 +67,8 @@ if (is_numeric($id)) {
 	
 	for($i = 0; $i < 4; $i++) {
 		if (is_object($oProfile->GetImage($i))) {
-			
-			
-			
-			if (($oProfile->GetImage($i)->GetWidth() < ImageSize::Get($size = '_m',$oProfile->GetImage($i)->GetAspect(),$type = "WIDTH")) && 
+
+		    if (($oProfile->GetImage($i)->GetWidth() < ImageSize::Get($size = '_m',$oProfile->GetImage($i)->GetAspect(),$type = "WIDTH")) && 
 				($oProfile->GetImage($i)->GetWidth() < ImageSize::Get($size = '_m',$oProfile->GetImage($i)->GetAspect(),$type = "HEIGHT"))) {
 				$t->Set('img'.($i + 1).'_m',$oProfile->GetImage($i)->GetHtml("",$oProfile->GetTitle()));
 			} else {

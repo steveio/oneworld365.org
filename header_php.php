@@ -43,6 +43,7 @@ require_once($_CONFIG['root_path']."/classes/layout.class.php");
 require_once($_CONFIG['root_path']."/classes/header.class.php");
 require_once($_CONFIG['root_path']."/classes/Refdata.php");
 require_once($_CONFIG['root_path']."/classes/RequestRouter.class.php");
+require_once($_CONFIG['root_path']."/classes/review.class.php");
 
 
 
