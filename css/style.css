@@ -983,11 +983,6 @@ section .search-result-panel {
 	height: 250px;
 }
 
-.search-result .img-container-4col {
-	position: relative;
-	height: 210px;
-}
-
 .search-result .featured-proj-m  .img-container {
 	position: relative;
 	height: 200px;
@@ -1020,14 +1015,19 @@ section .search-result-panel {
     right: 10px;
 }
 
+.search-result .img-container-4col {
+	position: relative;
+	height: 200px;
+}
+
 .search-result .featured-proj .featured-proj-img-4col {
 	height: 200px;
 }
 
 .search-result .featured-proj .overlay-img-4col {
 	position: absolute;
-	bottom: 24px;
-    right: 10px;
+	bottom: 18px;
+    right: 6px;
 }
 
 .search-result .featured-proj .details {
@@ -1035,7 +1035,7 @@ section .search-result-panel {
 
 .search-result .featured-proj .title {
 	float: left;
-	height: 45px;
+	height: 54px;
 	padding: 0px;
 	margin: 0px;
 }
