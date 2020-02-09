@@ -38,7 +38,7 @@ $(document).ready(function(){
 		fq = fq+'&rows='+rows;
 		
 		// is this a project (1), org (0) or article (2) search?
-		var profileType = $('input[name=search_type]:checked').val();
+		var profileType = $('input[name=search_type]').val();
 		fq = fq+'&fq0=profile_type:'+profileType;
 
 		if (profileType == 1) {

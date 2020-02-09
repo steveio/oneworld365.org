@@ -19,8 +19,7 @@
 	
 	<div class="search-radio">
 
-		<label for="results">Programs & Companies</label>
-		<input id="search_projects" class="search_type" name="search_type" value="(1 OR 0)" type="radio" checked />
+		<input id="search_projects" class="search_type" name="search_type" value="(1 OR 0)" type="hidden" />
 
 	</div>
 	
