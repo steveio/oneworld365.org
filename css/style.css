@@ -1002,10 +1002,6 @@ section .search-result-panel {
 	height: 240px;
 }
 
-.search-result .featured-proj .featured-proj-img-4col {
-	height: 200px;
-}
-
 .search-result .featured-proj-m .overlay-img-m {
 	position: absolute;
 	bottom: 10px;
@@ -1024,19 +1020,40 @@ section .search-result-panel {
     right: 10px;
 }
 
+.search-result .featured-proj .featured-proj-img-4col {
+	height: 200px;
+}
+
 .search-result .featured-proj .overlay-img-4col {
 	position: absolute;
 	bottom: 24px;
     right: 10px;
 }
 
+.search-result .featured-proj .details {
+}
+
+.search-result .featured-proj .title {
+	float: left;
+	height: 45px;
+	padding: 0px;
+	margin: 0px;
+}
+
+.search-result .featured-proj .rating {
+	min-height: 26px;
+	padding: 0px;
+	margin: 0px;
+}
 
 .search-result .featured-proj .details h3 {
-	line-height: 20px;
+	vertical-align: top;
+	line-height: 18px;
 	font-size: 1.1em;
 	font-weight: bold;
-	margin: 2px;
 	padding: 0px;
+	margin: 0px;
+
 }
 
 .search-result .featured-proj-s .details {
@@ -1046,8 +1063,8 @@ section .search-result-panel {
 	line-height: 16px;
 	font-size: .8em;
 	font-weight: none;
-  margin: 4px 0px 4px 0px;
-  padding: 4px 0px 4px 0px;
+	margin: 4px 0px 4px 0px;
+	padding: 4px 0px 4px 0px;
 }
 
 .search-result .featured-proj .details p {

@@ -124,14 +124,25 @@
             </div>
 		    </div>
 			<div class="details">
+                <div class="span12 title">
             	<h3><a href="<%= profile_url %>" title="<%= title %>" target="_new"><%= title %></a></h3>
-                <ul>
-                    <li>Rating: <%= review_rating %></li>
-                    <li>Reviews: <%= review_count %></li>
-                    <li>Location: <%= location %></li>
-                    <li>Duration: <%= duration_from %> - <%= duration_to %></li>
-                    <li>Approx Costs: <%= price_from %> - <%= price_to %> <%= currency_label %></li>
+                </div>
+                <% if (review_rating >= 1) { %>
+                   <div id="rateYo-<%= id %>" class="span12 rating"></div>
+                <% } %>
+                <div class="span12">
+                <ul class="featured-proj-details">
+                    <% if (location !== null && location.length > 1) { %>
+                    <li><%= location %></li>
+                    <% } %>
+                    <% if (duration_from !== null && duration_from.length > 1) { %>
+                    <li><%= duration_from %> - <%= duration_to %></li>
+                    <% } %>
+                    <% if (price_from !== null && price_from.length > 1) { %>
+                    <li><%= price_from %> - <%= price_to %> <%= currency_label %></li>
+                    <% } %>
                 </ul>
+                </div>
 			</div>
         <% } else { %>
 

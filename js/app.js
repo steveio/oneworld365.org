@@ -202,6 +202,18 @@ $(document).ready(function(){
 		
 		processProfileData(json.data.profile,json.profileType);
 
+		$.each(json.data.profile, function(idx,profile) {
+			if (!profile.review_rating !== null)
+			{
+				$("#rateYo-"+profile.id).rateYo({
+					 rating: profile.review_rating,
+					 starWidth: "18px",
+					 fullStar: true,
+					 readOnly: true
+				});
+			}
+		});
+		
 		if (typeof(json.data.facet) != "undefined") {
 
 			$.each(json.data.facet, function(name,facet) {
