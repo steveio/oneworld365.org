@@ -207,7 +207,7 @@ $(document).ready(function(){
 			{
 				$("#rateYo-"+profile.id).rateYo({
 					 rating: profile.review_rating,
-					 starWidth: "18px",
+					 starWidth: "16px",
 					 fullStar: true,
 					 readOnly: true
 				});

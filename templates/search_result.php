@@ -123,12 +123,14 @@
             </div>
 		    </div>
 			<div class="details">
-                <div class="span12 title">
-            	<h3><a href="<%= profile_url %>" title="<%= title %>" target="_new"><%= title %></a></h3>
-                </div>
-                <% if (review_rating >= 1) { %>
+                <div class="span12 proj-title">
+                   <div class="span12 title">
+            	   <h3><a href="<%= profile_url %>" title="<%= title %>" target="_new"><%= title %></a></h3>
+                   </div>
+                   <% if (review_rating >= 1) { %>
                    <div id="rateYo-<%= id %>" class="span12 rating"></div>
-                <% } %>
+                   <% } %>
+                </div>
                 <div class="span12">
                 <ul class="featured-proj-details">
                     <% if (location !== null && location.length > 1) { %>

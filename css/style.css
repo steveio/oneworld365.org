@@ -1033,6 +1033,13 @@ section .search-result-panel {
 .search-result .featured-proj .details {
 }
 
+.search-result .featured-proj .proj-title {
+	float: left;
+	height: 70px;
+	padding: 0px;
+	margin: 0px 0px 4px 0px;
+}
+
 .search-result .featured-proj .title {
 	float: left;
 	height: 54px;
