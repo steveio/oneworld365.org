@@ -459,11 +459,14 @@ abstract class AbstractProfile implements TemplateInterface {
 
 	    if ($this->GetLinkTo() == "COMPANY")
 	    {
-	        if (count($this->country_array) == 1) {
-	            return $this->country_txt;
-	        } else {
-		    if (is_array($this->country_array))
-	            	return count($this->country_array) ." Destinations";
+
+	        if (is_array($this->country_array))
+	        {
+	            if (count($this->country_array) == 1) {
+    	            return $this->country_txt;
+    	        } else {
+        	        return count($this->country_array) ." Destinations";
+    	        }
 	        }
 
 	    } else { // PLACEMENT

@@ -1200,10 +1200,10 @@ class CompanyProfile extends AbstractProfile {
 			$oProfile = new CompanyProfile();
 			$oProfile->SetFromObject($o);
 			$oProfile->GetImages();
-			//$oProfile->GetCategoryInfo();
-			//$oProfile->GetCountryInfo();
-			//$oProfile->GetActivityInfo();
-			//$oProfile->SetProfileCount();
+			$oProfile->GetCategoryInfo();
+			$oProfile->GetCountryInfo();
+			$oProfile->GetActivityInfo();
+			$oProfile->SetProfileCount();
 			$oProfile->GetReviewRating();;
 			$aProfile[$oProfile->GetId()] = $oProfile;			
 		}
