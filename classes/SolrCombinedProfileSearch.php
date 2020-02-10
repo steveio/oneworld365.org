@@ -44,24 +44,19 @@ class SolrCombinedProfileSearch extends SolrSearch {
 			if (is_array($aCompanyId) && count($aCompanyId) >= 1)
 				$aCompany = CompanyProfile::Get("ID_SORTED",$aCompanyId);
 
+			$aCombinedProfile = $aPlacement + $aCompany;
 			$this->_aProfile = array();
 
-			foreach($aProfileId as $idx => $id)
+			$idx = 0;
+			foreach($this->resultset as $doc)
 			{
-			    if (isset($aPlacement[$id]) && is_object($aPlacement[$id]))
+			    if (array_key_exists($doc->profile_id,$aCombinedProfile))
 			    {
-    			    $this->_aProfile[$idx] = $aPlacement[$id];
-    			    $this->aId[$idx] = $id;
+			        $this->_aProfile[$idx] = $aCombinedProfile[$doc->profile_id];
+			        $this->aId[$idx] = $doc->profile_id;
+			        $idx++;
 			    }
-			}
-
-			foreach($aCompanyId as $idx => $id)
-			{
-			    if (isset($aCompany[$id]) && is_object($aCompany[$id]))
-			    {
-			         $this->_aProfile[$idx] = $aCompany[$id];
-			         $this->aId[$idx] = $id;
-			    }
+			    if ($idx == $this->getRows()) break;
 			}
 
 			$this->setFacetFieldResult();
