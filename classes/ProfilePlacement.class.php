@@ -351,7 +351,7 @@ class PlacementProfile extends AbstractProfile {
 			if (strlen($s) > $trunc) {
 				$s = $s." ";
 				$s = substr($s,0,$trunc);
-				//$s = $s."...";
+				$s = $s."..";
 			}
 			return $s;	
   		} else {
@@ -1285,7 +1285,7 @@ class PlacementProfile extends AbstractProfile {
 				"id" => $this->GetId(),
 				"profile_type" => 1,
 				"profile_type_label" => $this->GetProfileTypeLabel($this),
-				"title" => $this->GetTitle(76),
+				"title" => $this->GetTitle(64),
 				"desc_short" => "",
 				"profile_url" => "/company/".$this->GetCompUrlName()."/".$this->GetUrlName(),
 				"profile_uri" => "/placement/".$this->GetUrlName(),

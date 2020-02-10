@@ -1,3 +1,4 @@
+
 @import "fonts.css";
 /* -----------------------------------------------------------------------------------
 // 1. Global properties (body, common classes, vertical rhythm, structure etc)
@@ -941,7 +942,7 @@ section .search-result-panel {
 }
 
 .search-result .featured-proj {
-  height: 360px;
+  height: 370px;
   padding: 10px;
   margin: 6px;
   border: 1px solid #CCCCCC;
@@ -1000,7 +1001,7 @@ section .search-result-panel {
 .search-result .featured-proj-m .overlay-img-m {
 	position: absolute;
 	bottom: 10px;
-  right: 10px;
+    right: 10px;
 }
 
 .search-result .featured-proj-s .overlay-img-s {
@@ -1048,15 +1049,16 @@ section .search-result-panel {
 }
 
 .search-result .featured-proj .rating {
-	min-height: 26px;
+	float: left;
+	min-height: 24px;
 	padding: 0px;
 	margin: 0px;
 }
 
 .search-result .featured-proj .details h3 {
 	vertical-align: top;
-	line-height: 18px;
-	font-size: 1.1em;
+	line-height: 17px;
+	font-size: 1em;
 	font-weight: bold;
 	padding: 0px;
 	margin: 0px;
