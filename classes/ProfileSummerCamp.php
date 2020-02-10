@@ -258,7 +258,7 @@ class SummerCampProfile extends CompanyProfile {
 	
 	public function GetCampGenderLabel() {
 		if (!is_object($this->oCampGender)) {
-			$this->oCampGender = new Refdata(REFDATA_CAMP_GENDER);
+			$this->oCampGender = Refdata::GetInstance(REFDATA_CAMP_GENDER);
 			$this->oCampGender->GetByType();
 			$this->camp_gender_label = $this->oCampGender->GetValueById($this->camp_gender);
 		}
@@ -271,7 +271,7 @@ class SummerCampProfile extends CompanyProfile {
 
 	public function GetCampReligionLabel() {
 		if (!is_object($this->oCampReligion)) {
-			$this->oCampReligion = new Refdata(REFDATA_RELIGION);
+			$this->oCampReligion = Refdata::GetInstance(REFDATA_RELIGION);
 			$this->oCampReligion->GetByType();
 			$this->camp_religion_label = $this->oCampReligion->GetValueById($this->camp_religion);
 		}
@@ -289,7 +289,7 @@ class SummerCampProfile extends CompanyProfile {
 	public function GetCamperAgeFromLabel() {
 		
 		if (!is_object($oCamperAgeFrom)) {
-			$this->oCamperAgeFrom = new Refdata(REFDATA_AGE_RANGE);
+			$this->oCamperAgeFrom = Refdata::GetInstance(REFDATA_AGE_RANGE);
 			$this->oCamperAgeFrom->GetByType();
 			$this->camper_age_from_label = $this->oCamperAgeFrom->GetValueById($this->camper_age_from_id);
 		}
@@ -298,7 +298,7 @@ class SummerCampProfile extends CompanyProfile {
 	
 	public function GetCamperAgeToLabel() {
 		if (!is_object($this->oCamperAgeTo)) {
-			$this->oCamperAgeTo = new Refdata(REFDATA_AGE_RANGE);
+			$this->oCamperAgeTo = Refdata::GetInstance(REFDATA_AGE_RANGE);
 			$this->oCamperAgeTo->GetByType();
 			$this->camper_age_to_label = $this->oCamperAgeTo->GetValueById($this->camper_age_to_id);
 		}

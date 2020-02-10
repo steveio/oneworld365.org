@@ -240,7 +240,7 @@ class SeasonalJobEmployerProfile extends CompanyProfile {
 	
 	public function GetNoStaffLabel() {
 
-		$oNoStaff = new Refdata(REFDATA_INT_RANGE);
+		$oNoStaff = Refdata::GetInstance(REFDATA_INT_RANGE);
 		$oNoStaff->SetOrderBySql(' id ASC');
 		$oNoStaff->SetElementName(PROFILE_FIELD_SEASONALJOBS_NO_STAFF);
 		$oNoStaff->GetByType();

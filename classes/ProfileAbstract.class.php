@@ -495,7 +495,7 @@ abstract class AbstractProfile implements TemplateInterface {
 	    
 	    if (!is_object($this->GetCurrencyRefdataObject()))
 	    {
-	        $oCurrency = new Refdata(REFDATA_CURRENCY);
+	        $oCurrency = Refdata::GetInstance(REFDATA_CURRENCY);
 	        $oCurrency->GetByType();
 	        $this->SetCurrencyRefdataObject($oCurrency);
 	    }
@@ -507,7 +507,7 @@ abstract class AbstractProfile implements TemplateInterface {
 	{
 
 	    if (!is_object($this->GetCostsRefdataObject())) {
-	        $oPrice = new Refdata(REFDATA_APPROX_COST);
+	        $oPrice = Refdata::GetInstance(REFDATA_APPROX_COST);
 	        $oPrice->SetOrderBySql(' sort_order ASC');
 	        $oPrice->GetByType();
 	        $this->SetCostsRefdataObject($oPrice);
@@ -521,7 +521,7 @@ abstract class AbstractProfile implements TemplateInterface {
 
 	    if (!is_object($this->GetCostsRefdataObject())) {
 
-	        $oPrice = new Refdata(REFDATA_APPROX_COST);
+	        $oPrice = Refdata::GetInstance(REFDATA_APPROX_COST);
 	        $oPrice->SetOrderBySql(' sort_order ASC');
 	        $oPrice->GetByType();
 	        $this->SetCostsRefdataObject($oPrice);
@@ -579,7 +579,7 @@ abstract class AbstractProfile implements TemplateInterface {
 	public function GetDurationFromLabel() {
 		
 		if (!is_object($this->GetDurationRefdataObject())) {
-			$oDuration = new Refdata(REFDATA_DURATION);
+			$oDuration = Refdata::GetInstance(REFDATA_DURATION);
 			$oDuration->SetOrderBySql(' id ASC');
 			$oDuration->GetByType();
 			$this->SetDurationRefdataObject($oDuration);
@@ -591,7 +591,7 @@ abstract class AbstractProfile implements TemplateInterface {
 	public function GetDurationToLabel() {
 
 		if (!is_object($this->GetDurationRefdataObject())) {
-			$oDuration = new Refdata(REFDATA_DURATION);
+			$oDuration = Refdata::GetInstance(REFDATA_DURATION);
 			$oDuration->SetOrderBySql(' id ASC');
 			$oDuration->GetByType();
 			$this->SetDurationRefdataObject($oDuration);

@@ -58,7 +58,29 @@ class Refdata {
 		$this->order_by_sql = " value ASC";
 		$this->limit_sql = '';
 	}
-	
+
+	/**
+	 * Singleton pattern, only a single instance of each refdata type object should be instantiated in memory
+	 * 
+	 * @param constant integer $cRefdataType
+	 * @return object (Refdata) Refdata
+	 */
+	public static function GetInstance($cRefdataType)
+	{
+
+	    global $aRefdata;
+	    
+	    if (isset($aRefdata[$cRefdataType])) return $aRefdata[$cRefdataType];
+
+	    $oRefdata = new Refdata($cRefdataType);
+
+	    if (!isset($aRefdata)) $aRefdata = array();
+
+	    $aRefdata[$cRefdataType] = $oRefdata;
+
+	    return $oRefdata;
+	}
+
 	public function GetValues() {
 		return $this->aValues;
 	}

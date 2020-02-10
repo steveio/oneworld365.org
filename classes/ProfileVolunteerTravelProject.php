@@ -306,7 +306,7 @@ class VolunteerTravelProjectProfile extends CompanyProfile {
 
 	public function GetOrgTypeLabel() {
 		if (!is_object($oOrgType)) {		
-			$oOrgType = new Refdata(REFDATA_ORG_PROJECT_TYPE);
+			$oOrgType = Refdata::GetInstance(REFDATA_ORG_PROJECT_TYPE);
 			$oOrgType->GetByType();
 			$this->SetOrgTypeRefdataObject($oOrgType);
 		}
