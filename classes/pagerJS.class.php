@@ -317,7 +317,7 @@ class PagedResultSet
 				}
 	
 				if ($i == $this->GetEndIdx() && $this->GetPageNum() < $this->GetNumPages()) {
-					$out .= "<li><a id=\"pageid_".$i."\" href=\"#\" title=\"Next\">»</a></li> ";
+					$out .= "<li><a id=\"pageid_".($i+1)."\" href=\"#\" title=\"Next\">»</a></li> ";
 				}
 			}
 	
