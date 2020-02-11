@@ -646,7 +646,7 @@ class CompanyProfile extends AbstractProfile {
 					return TRUE;
 				}				
 			} else {
-				throw new Exception(ERROR_COMPANY_PROFILE_NOT_FOUND.$id);
+				throw new Exception("Error - Company profile not found: ".$id);
 			}
 		
 	}
