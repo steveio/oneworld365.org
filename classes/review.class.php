@@ -124,6 +124,8 @@ class Review {
 		if ((!is_numeric($id)) ||(!is_numeric($iStatus))) return false;
 
 		$db->query("UPDATE review SET status = ".$iStatus ." WHERE id = ".$id);
+		
+		if ($db->getAffectedRows() == 1) return true;
 	}
 
 	public function GetStatusLabel() {
@@ -271,11 +273,23 @@ class Review {
         return $aResult;
 	}
 
-	public function GetReport()
+	public function GetReport($aOptions)
 	{
 
 	    global $db;
 
+	    if ($aOptions['report_date_from'] != null) {
+	        $strStartDateSQL = " and r.date > '".$aOptions['report_date_from']."'";
+	    }
+
+	    if ($aOptions['report_date_to'] != null) {
+	        $strEndDateSQL = " and r.date < '".$aOptions['report_date_to']."'";
+	    }
+	    
+	    if (isset($aOptions['report_status'])) {
+	        $strStatusSQL = " and r.status = ".$aOptions['report_status'];
+	    }
+	    
 	    $sql = "
         select * from 
         (
@@ -296,11 +310,12 @@ class Review {
     	    ,article_map m
     	    where
             1=1
-    	    --r.status = 1
-    	    --and r.date > NOW() - INTERVAL '3 MONTH'
     	    and r.link_to = 'ARTICLE'
     	    and r.link_id = a.id
     	    and a.id = m.article_id
+            ".$strStartDateSQL."
+            ".$strEndDateSQL."
+            ".$strStatusSQL."
     	    UNION
     	    select
             r.link_to ||'<br />'||c.title||'<br /><a href=\"http://www.oneworld365.org/company/'||c.url_name||'\" target=_new>/company/'||c.url_name||'</a>' as posted_to 
@@ -318,10 +333,11 @@ class Review {
     	    ,company c
     	    where
             1=1
-    	    --r.status = 1
-    	    --and r.date > NOW() - INTERVAL '3 MONTH'
     	    and r.link_to = 'COMPANY'
     	    and r.link_id = c.id
+            ".$strStartDateSQL."
+            ".$strEndDateSQL."
+            ".$strStatusSQL."
     	    UNION
     	    select
             r.link_to ||' '||p.title||' '||'/'||c.url_name ||'/'|| p.url_name as posted_to
@@ -340,20 +356,21 @@ class Review {
     	    ,company c
     	    where
             1=1
-    	    --r.status = 1
-    	    --and r.date > NOW() - INTERVAL '3 MONTH'
     	    and r.link_to = 'PLACEMENT'
     	    and r.link_id = p.id
     	    and p.company_id = c.id
+            ".$strStartDateSQL."
+            ".$strEndDateSQL."
+            ".$strStatusSQL."
         ) q1
         order by q1.post_date desc
-
-            ";
+        ";
 
 	    $db->query($sql);
-	    
+
 	    if ($db->getNumRows() >= 1) {
 	        $aRows = $db->getRows(PGSQL_ASSOC);
+	        
 	        $aResult = array();
 	        
 	        foreach($aRows as $aRow)
@@ -363,6 +380,7 @@ class Review {
 	            }
 	            $aResult[] = $aRow;
 	        }
+	        
 	        return $aResult;
 	    } else {
 	        return false;
