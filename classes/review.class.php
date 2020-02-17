@@ -68,8 +68,7 @@ class Review {
 
 	public function SetName($name) {
 		$this->name = $name;
-	}
-	
+	}	
 
 	public function GetEmail() {
 		return $this->email;
@@ -294,7 +293,7 @@ class Review {
         select * from 
         (
     	    select
-            r.link_to ||'<br />'||a.title||'<br />'||'<a href=\"'||m.section_uri||'\">'||m.section_uri||'</a>' as posted_to 
+            r.link_to ||'<br />'||a.title||'<br />'||'<a href=\"http://www.oneworld365.org'||m.section_uri||'\">'||m.section_uri||'</a>' as posted_to 
     	    ,r.id as post_id
     	    ,r.title ||'<br />'||r.review as post_details
             ,r.name ||'<br />'||r.email||'<br />'||r.ip_addr as posted_by
@@ -409,25 +408,6 @@ class Review {
 
 		if ((strlen($this->GetEmail()) < 1)  || (!Validation::IsValidEmail($this->GetEmail()) ))
 			$aError['email'] = "Please enter a valid email address";
-
-		if ($this->GetType() == "review")
-		{
-			if ((!is_numeric($this->GetAge())))
-				$aError['age'] = "Please enter your age";
-
-			if ((!in_array($this->GetGender(), array("M","F"))))
-				$aError['gender'] = "Please enter your gender";
-
-            if ((!is_numeric($this->GetRating())))
-	                $aError['rating'] = "Please enter a rating";
-
-            if (strlen($this->GetNationality()) < 1 || strlen($this->GetNationality()) > 32)
-                $aError['nationality'] = "Please enter your nationality (upto 32 chars)";
-
-            if (strlen($this->GetTitle()) < 1 || strlen($this->GetTitle()) > 128)
-                $aError['review'] = "Please enter a review title (upto 128 chars)";
-                    
-		}
 		
 		if (strlen($this->GetReview()) < 1)
 			$aError['review'] = "Please enter your review";
@@ -460,8 +440,6 @@ class Review {
 					,link_id
 					,name
 					,email
-    				,age
-    				,gender
 					,nationality
 					,title
     				,review
@@ -475,8 +453,6 @@ class Review {
 					,".$this->GetLinkId()."
 					,'".$this->GetName()."'
 					,'".$this->GetEmail()."'
-					,".$this->GetAge()."
-					,'".$this->GetGender()."'
 					,'".$this->GetNationality()."'
 					,'".$this->GetTitle()."'
 					,'".$this->GetReview()."'
@@ -504,8 +480,6 @@ class Review {
 	    $sql = "UPDATE review SET 
 					name = '".$this->GetName()."',
 					email = '".$this->GetEmail()."',
-    				age = ".$this->GetAge().",
-    				gender = '".$this->GetGender()."',
 					nationality = '".$this->GetNationality()."',
 					title = '".$this->GetTitle()."',
     				review = '".$this->GetReview()."',
@@ -513,7 +487,7 @@ class Review {
 					status = ".$this->GetStatus()."
                 WHERE id = ".$this->GetId()."
                 ";
-	    
+
 	    if (!$db->query($sql)) {
 	        return false;
 	    } else {
@@ -558,6 +532,5 @@ class Review {
 	}
 
 }
-
 
 ?>
