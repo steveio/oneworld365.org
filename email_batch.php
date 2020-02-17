@@ -49,7 +49,7 @@ require_once(ROOT_PATH."/classes/ProfileJob.class.php");
 require_once(ROOT_PATH."/classes/email2friend.class.php");
 require_once(ROOT_PATH."/classes/image.class.php");
 require_once(ROOT_PATH."/classes/EmailBatch.php");
-
+require_once(ROOT_PATH."/classes/review.class.php");
 
 require_once(ROOT_PATH."/classes/EmailSender.php");
 require_once(ROOT_PATH."/classes/htmlMimeMail.php");
