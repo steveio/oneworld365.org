@@ -1,5 +1,5 @@
 <!--  begin: FEATURED PROJECT -->
-<div class="search-result">
+<div class="span12 search-result">
 <?
 $aProfile = $this->Get('PROFILE_ARRAY');
 $strProfileType = $this->Get('PROFILE_TYPE');
