@@ -299,15 +299,20 @@ class EmailBatch {
         
         $oEnquiry = new Enquiry();
         
+        $db->query("BEGIN TRANSACTION");
+
         /*
-         * Get sent enquiries, where auto-response email is pending
+         * Get sent enquiries, where auto-response email is pending,
+         * lock rows to prevent concurrent processing error
          *
          */
-        $aId = $oEnquiry->GetByStatus(2,$_CONFIG['site_id']);        
+        $aId = $oEnquiry->GetByStatus(2,$_CONFIG['site_id'], $bForUpdate = true);        
         if (!$aId) return false;
 
         if (LOG) Logger::DB(3,JOBNAME,'EmailBatch->ProcessEnquiryAutoResponseEmail() found '.count($aId).' enquiries pending auto-response email');
-        
+
+        $aEmailAddress = array(); // only send 1 enquiry auto-response per sender email address
+
         foreach($aId as $id) {
 
             if (LOG) Logger::DB(3,JOBNAME,'EmailBatch->ProcessEnquiryEmail() processing enquiry id: '.$id);
@@ -359,28 +364,34 @@ class EmailBatch {
                     "BOOKING_TXT" => "",
                     "BROCHURE_TXT" => "",
                     "JOB_APP_TXT" => ""
-                    
+
                 );
                 
                 $this->SetMsgParams($aParams);
-
                 
                 if ($this->Process()) {
+                    
+                    if (!in_array($oEnquiry->GetEmail(),$aEmailAddress))
+                        $db->query("UPDATE enquiry SET status = 7, processed = now()::timestamp WHERE email = '".$oEnquiry->GetEmail()."' AND id IN (".implode(",",$aId).")");
+
+                    $aEmailAddress[] = $oEnquiry->GetEmail();
+
                     $db->query("UPDATE enquiry SET status = 7, processed = now()::timestamp WHERE id = ".$oEnquiry->GetId());
+
                 } else {
-                    //$this->SetFailed($id,6);
+                    throw new Exception("Failed to send enquiry id: ".$oEnquiry->GetId());
                 }
-                
+
             } catch (Exception $e) {
+                // leave existing enquiry.status to allow re-processing in case of transient send error
                 error_log($e->getMessage());
             }
             
         }
-        
+
+        $db->query("COMMIT");
     }
-    
-    
-    
+
     /*
      * Send to friend Email
      *

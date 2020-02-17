@@ -256,7 +256,7 @@ class Enquiry {
 		return $sEnquiryTypeLabel;
 	}
 
-	public function GetByStatus($iStatus,$iSiteId) {
+	public function GetByStatus($iStatus,$iSiteId,$bForUpdate = false) {
 
 		if (DEBUG) Logger::Msg(get_class($this)."::".__FUNCTION__."()");
 
@@ -264,7 +264,11 @@ class Enquiry {
 
 		if ((!is_numeric($iStatus)) || (!is_numeric($iSiteId))) return false;
 
-		$db->query("SELECT id FROM enquiry WHERE status = ".$iStatus. " AND site_id = ".$iSiteId);
+		$strForUpdateSQL = ($bForUpdate) ? " FOR UPDATE NOWAIT " : "";
+
+		$sql = "SELECT id FROM enquiry WHERE status = ".$iStatus. " AND site_id = ".$iSiteId.$strForUpdateSQL;
+
+		$db->query($sql);
 
 		if ($db->getNumRows() >= 1) {
 			$aTmp = $db->getRows();
