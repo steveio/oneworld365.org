@@ -40,7 +40,7 @@ $aPageOptions = $this->Get('aPageOptions');
                         print $oSearchResultPanel->Render();
         ?>
 
-		<div class="lead">
+		<div class="span12 lead">
 					<?
 					  // insert related profiles into article body
 						$strArticleBody = Article::convertCkEditorFont2Html($oArticle->GetDescFull(),"h3");
@@ -102,7 +102,6 @@ $aPageOptions = $this->Get('aPageOptions');
 				   }
 
 			    ?>
-        	<p></p>
     </div>
 	</div>
 </div>
