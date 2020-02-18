@@ -4,6 +4,7 @@
 $aProfile = $this->Get('PROFILE_ARRAY');
 $strProfileType = $this->Get('PROFILE_TYPE');
 
+
 foreach($aProfile as $oProfile)
 {
 if (!is_object($oProfile)) continue;
@@ -14,8 +15,8 @@ $aImageDetails = $oProfile->GetImageUrlArray();
 
   <? if ($strProfileType == "aProfile") { ?>
 
-  <div class="" style="width: 100%;  margin: 0 auto;">
-        <div class="" style="display: inline-block; vertical-align: top; width: 110px;">
+  <div class="span12" style="">
+        <div class="span4" style="display: inline-block; vertical-align: top;">
           <? if (strlen($aImageDetails['MEDIUM']['URL']) > 1) { ?>
           <a title="<?= $oProfile->GetTitle(76) ?>" href="<?= "/company/".$oProfile->GetCompUrlName()."/".$oProfile->GetUrlName()  ?>" class="">
           <img class="img-responsive img-rounded" src="<?= $aImageDetails['MEDIUM']['URL'] ?>" alt="<?= $oProfile->GetTitle(); ?>" />
@@ -31,11 +32,38 @@ $aImageDetails = $oProfile->GetImageUrlArray();
               </a>
               </div>
             </div>
+		</div>
 
-	</div>
-
-        <div class="details" style="vertical-align: top;">
+        <div class="span12 title" style="">
             <h4><a href="<?= "/company/".$oProfile->GetCompUrlName()."/".$oProfile->GetUrlName() ?>" title="" target="_new"><?= $oProfile->GetTitle(); ?></a></h4>
+            <?php if ($oProfile->GetRating() >= 1) { ?>
+            <div id="rateYo-<?= $oProfile->GetId(); ?>" class="span12 rating"></div>
+            <?php } ?>
+        </div>
+        <?php if ($oProfile->GetRating() >= 1) { ?>
+        <script>
+        $(document).ready(function(){
+
+    		$("#rateYo-<?= $oProfile->GetId(); ?>").rateYo({
+    			 rating: <?= $oProfile->GetRating(); ?>,
+    			 starWidth: "16px",
+    			 fullStar: true,
+    			 readOnly: true
+    		});
+
+        });
+        </script>
+        <?php } ?>
+
+        <div class="span12 details">
+        <ul class="">
+            <?php if (strlen($oProfile->GetLocationLabel()) > 1) { ?>
+            <li><?= $oProfile->GetLocationLabel(); ?></li>
+            <?php } ?>
+            <?php if (strlen($oProfile->GetDurationFromLabel()) > 1) { ?>
+            <li><?= $oProfile->GetDurationFromLabel() ." - " .$oProfile->GetDurationToLabel() ." / From: ".$oProfile->GetCurrencyLabel(true)." ".$oProfile->GetPriceFromLabel(); ?></li>
+            <?php } ?>
+        </ul>
         </div>
 
   </div>

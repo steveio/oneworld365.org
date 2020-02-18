@@ -66,8 +66,19 @@ class SolrSearch {
 		return $this->rows;
 	}
 	
-	public function getId() {
-		return $this->aId;
+	public function getId($bIdOnly = false) {
+
+	    if ($bIdOnly)
+	    {
+	        $aId = array();
+	        foreach($this->aId as $arr)
+	        {
+	            $aId[] = $arr['profile_id'];
+	        }
+	      return $aId;
+	    } else {
+		  return $this->aId;
+	    }
 	}
 	
 	public function setSiteId($site_id) {

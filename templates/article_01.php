@@ -53,16 +53,6 @@ $aPageOptions = $this->Get('aPageOptions');
 						// get related placements
 						$aProfile = $oArticle->GetAttachedProfile();
 
-						/*
-						global $solr_config;
-						$oSolrMoreLikeSearch = new SolrMoreLikeSearch($solr_config);
-	    			$oSolrMoreLikeSearch->getCompanyByArticle($oArticle->GetId());
-	    			$oSolrMoreLikeSearch->setRows(10);
-	    			$aProfileId = $oSolrMoreLikeSearch->getId();
-						$aCompany = CompanyProfile::Get("ID",$aProfileId);
-						*/
-
-
 						$i = 0; // block index
 						$iAdsInserted = 0;
 						$lineCount = 0;
@@ -77,26 +67,25 @@ $aPageOptions = $this->Get('aPageOptions');
   					  if ($lineCount > 20 && count($aProfile) >= 1 && ($i > 1) && ($i % 4 == 0))
   						{
 
-									//$strTemplate = (($iAdsInserted % 2) == 0) ? "featured_project_list_col3.php" : "featured_project_list_sm.php";
-									//$strProfileGroupName = (($iAdsInserted % 2) == 0) ? "aProfile" : "aCompany";
-									$strTemplate = "featured_project_list_sm.php";
-									$strProfileGroupName = "aProfile";
+							//$strTemplate = (($iAdsInserted % 2) == 0) ? "featured_project_list_col3.php" : "featured_project_list_sm.php";
+							//$strProfileGroupName = (($iAdsInserted % 2) == 0) ? "aProfile" : "aCompany";
+							$strTemplate = "featured_project_list_sm.php";
+							$strProfileGroupName = "aProfile";
 
-									$aProfileGroup = array();
+							$aProfileGroup = array();
   						    $iNumProfiles = 3;
   						    for($j=0;$j<$iNumProfiles;$j++)
   						    {
   						        $aProfileGroup[] = array_shift($$strProfileGroupName);
   						    }
 
-
   						    $oTemplate = new Template();
   						    $oTemplate->Set("PROFILE_ARRAY",$aProfileGroup);
-									$oTemplate->Set("PROFILE_TYPE",$strProfileGroupName);
+							$oTemplate->Set("PROFILE_TYPE",$strProfileGroupName);
   						    $oTemplate->LoadTemplate($strTemplate);
   						    print $oTemplate->Render();
-									$iAdsInserted++;
-									$lineCount = 0;
+							$iAdsInserted++;
+							$lineCount = 0;
   					    }
 
 				   }

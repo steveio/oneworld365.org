@@ -935,40 +935,41 @@ class Content  implements TemplateInterface {
 		$this->aProfile = $aProfile;
 	}
 	
-	public function SetAttachedProfile($fetch = TRUE,$aRes = array()) {
-		
+	public function SetAttachedProfile($aProfileId = array()) {
+
 		if (DEBUG) Logger::Msg(get_class($this)."::".__FUNCTION__."()");
 
 		global $db;
-		
-		if ($fetch) {
-			$db->query("SELECT m.profile_type, m.profile_id FROM ".DB__ARTICLE_PROFILE_MAP_TBL." m WHERE m.article_id = ".$this->GetId());
-			
-			if ($db->GetNumRows() < 1) return false;
-			
-			$aRes = $db->GetRows();
+
+		try {
+
+		    if (!is_array($aProfileId) || count($aProfileId) < 1)
+		    {
+		        // fetch profiles statically mapped to article
+                $sql = "SELECT m.profile_id FROM ".DB__ARTICLE_PROFILE_MAP_TBL." m WHERE m.article_id = ".$this->GetId();
+    
+        		$db->query($sql);
+    
+        		if ($db->GetNumRows() < 1) return false;
+    
+        		$aRes = $db->GetRows();
+    
+        		$aProfileId = array();
+        		foreach($aRes as $aRow) {
+        		    $aProfileId = $aRow['profile_id'];
+        		}
+		    }
+
+		    $aProfile = PlacementProfile::Get("ID_LIST_SEARCH_RESULT",$aProfileId);
+
+		    $this->aProfile = (is_array($aProfile)) ? $aProfile : array();
+		    
+		} catch (Exception $e) {
+		    $this->aProfile = array();
+		    return false;
 		}
-		
-		foreach($aRes as $aRow) {
-			$oProfile = ProfileFactory::Get($aRow['profile_type']);
-			try {
-				$aProfile = $oProfile->GetProfileById($aRow['profile_id']);
-			} catch (Exception $e) {
-				// @todo comp profile deleted, remove this profile mapping
-				continue;
-			}
-			if (!$aProfile) continue;
-			$oProfile->SetFromArray($aProfile);
-			//var_dump($oProfile->GetTitle());
-			$oProfile->GetImages($iType = PROFILE_IMAGE);
-			if (in_array($aRow['profile_type'], array(PROFILE_PLACEMENT, PROFILE_VOLUNTEER))) {
-				$oProfile->SetCompanyLogo();
-			}
-			$this->aProfile[] = $oProfile; 
-		}
-		
-		return true;
-		
+
+		return true;		
 	}
 	
 	

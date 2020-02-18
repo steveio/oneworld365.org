@@ -966,12 +966,45 @@ section .search-result-panel {
 }
 
 .search-result .featured-proj-s {
-  height: 150px;
+  height: 186px;
   padding: 6px;
-  margin: 6px;
+  margin: 2px;
   border: 1px solid #CCCCCC;
   box-shadow: 0px 1px 2px 0 rgba(0,0,0,0.2);
 }
+
+
+.search-result .featured-proj-s .rating {
+	float: left;
+	min-height: 24px;
+	padding: 0px;
+	margin: 0px;
+}
+
+
+.search-result .featured-proj-s h4 {
+	line-height: 16px;
+	font-size: .7em;
+	font-weight: none;
+	margin: 4px 0px 4px 0px;
+	padding: 4px 0px 4px 0px;
+}
+
+.search-result .featured-proj-s .details {
+	line-height: 14px;
+	font-size: .7em;
+	font-weight: none;
+	margin: 0px;
+	padding: 0px;
+}
+
+.search-result .featured-proj-s .details li {
+	line-height: 14px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding: 0px;
+}
+
 
 .btn-primary-sm {
   font-size: .8em;
@@ -1064,24 +1097,6 @@ section .search-result-panel {
 	margin: 0px;
 
 }
-
-.search-result .featured-proj-s .details {
-}
-
-.search-result .featured-proj-s .details h4 {
-	line-height: 16px;
-	font-size: .8em;
-	font-weight: none;
-	margin: 4px 0px 4px 0px;
-	padding: 4px 0px 4px 0px;
-}
-
-.search-result .featured-proj .details p {
-	font-weight: none;
-	margin: 0px;
-	padding: 0px;
-}
-
 
 .search-result .featured-org {
   height: 200px;

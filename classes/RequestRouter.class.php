@@ -457,10 +457,10 @@ class RequestRouter {
     			$oSolrMoreLikeSearch = new SolrMoreLikeSearch($solr_config);
     			$oSolrMoreLikeSearch->getPlacementsByArticleBalanced($oArticle->GetId());
     			$oSolrMoreLikeSearch->setRows(10);
-    			$aProfileId = $oSolrMoreLikeSearch->getId();
-    			
+    			$aProfileId = $oSolrMoreLikeSearch->getId($bIdOnly = true);
+
     			if (count($aProfileId) >= 1) {
-    				$oArticle->SetAttachedProfile($fetch = FALSE,$aProfileId);
+    				$oArticle->SetAttachedProfile($aProfileId);
     			}
     		}
         
