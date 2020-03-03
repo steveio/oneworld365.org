@@ -6,6 +6,18 @@ $oArticle = $this->Get('ARTICLE_OBJECT');
 $aPageOptions = $this->Get('aPageOptions');
 
 ?>
+
+<?php if ($aPageOptions[ARTICLE_DISPLAY_OPT_ADS] != "f") { ?>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+ (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-9874604497476880",
+      enable_page_level_ads: true
+ });
+</script> 
+<?php  } ?>
+
+
 <div class="row">
 <!-- start: Page section -->
 <section class="article span12">
@@ -50,8 +62,12 @@ $aPageOptions = $this->Get('aPageOptions');
 						$aBlocks = (count($aH2Blocks) > count($aH3Blocks)) ? $aH2Blocks : $aH3Blocks;
 						$strHeaderTag = (count($aH2Blocks) > count($aH3Blocks)) ? "<h2>" : "<h3>";
 
-						// get related placements
-						$aProfile = $oArticle->GetAttachedProfile();
+						if ($aPageOptions[ARTICLE_DISPLAY_OPT_PROFILE] != "f") {
+    						// get related placements
+    						$aProfile = $oArticle->GetAttachedProfile();
+						} else {
+						     $aProfile = array();   
+						}
 
 						$i = 0; // block index
 						$iAdsInserted = 0;
@@ -59,35 +75,34 @@ $aPageOptions = $this->Get('aPageOptions');
 						for($i=0; $i<count($aBlocks);$i++)
 						{
 
-							if ($i >= 1) print $strHeaderTag;
-							print $aBlocks[$i];
-							$lineCount += count(explode("\n",$aBlocks[$i]));
-
-							// insert ads every nth block (except when block line count less than minimum)
-  					  if ($lineCount > 20 && count($aProfile) >= 1 && ($i > 1) && ($i % 4 == 0))
-  						{
-
-							//$strTemplate = (($iAdsInserted % 2) == 0) ? "featured_project_list_col3.php" : "featured_project_list_sm.php";
-							//$strProfileGroupName = (($iAdsInserted % 2) == 0) ? "aProfile" : "aCompany";
-							$strTemplate = "featured_project_list_sm.php";
-							$strProfileGroupName = "aProfile";
-
-							$aProfileGroup = array();
-  						    $iNumProfiles = 3;
-  						    for($j=0;$j<$iNumProfiles;$j++)
-  						    {
-  						        $aProfileGroup[] = array_shift($$strProfileGroupName);
-  						    }
-
-  						    $oTemplate = new Template();
-  						    $oTemplate->Set("PROFILE_ARRAY",$aProfileGroup);
-							$oTemplate->Set("PROFILE_TYPE",$strProfileGroupName);
-  						    $oTemplate->LoadTemplate($strTemplate);
-  						    print $oTemplate->Render();
-							$iAdsInserted++;
-							$lineCount = 0;
-  					    }
-
+                            if ($i >= 1) print $strHeaderTag;
+                            print $aBlocks[$i];
+                            $lineCount += count(explode("\n",$aBlocks[$i]));
+                            
+                            // insert ads every nth block (except when block line count less than minimum)
+                            if ($lineCount > 20 && count($aProfile) >= 1 && ($i > 1) && ($i % 4 == 0))
+                            {
+                            
+                            	//$strTemplate = (($iAdsInserted % 2) == 0) ? "featured_project_list_col3.php" : "featured_project_list_sm.php";
+                            	//$strProfileGroupName = (($iAdsInserted % 2) == 0) ? "aProfile" : "aCompany";
+                            	$strTemplate = "featured_project_list_sm.php";
+                            	$strProfileGroupName = "aProfile";
+                            
+                            	$aProfileGroup = array();
+                                $iNumProfiles = 3;
+                                for($j=0;$j<$iNumProfiles;$j++)
+                                {
+                                    $aProfileGroup[] = array_shift($$strProfileGroupName);
+                                }
+                            
+                                $oTemplate = new Template();
+                                $oTemplate->Set("PROFILE_ARRAY",$aProfileGroup);
+                            	$oTemplate->Set("PROFILE_TYPE",$strProfileGroupName);
+                                $oTemplate->LoadTemplate($strTemplate);
+                                print $oTemplate->Render();
+                            	$iAdsInserted++;
+                            	$lineCount = 0;
+                            }
 				   }
 
 			    ?>
