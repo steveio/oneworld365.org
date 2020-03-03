@@ -1731,7 +1731,6 @@ class ContentMapping {
 	    
 	    $sql = "INSERT INTO ".DB__ARTICLE_MAP_OPTS." (	article_map_oid,
 												opt_placement,
-												opt_org,
 												opt_article,
 												opt_ptab,
 												search_keywords,
@@ -1747,7 +1746,6 @@ class ContentMapping {
 											 ) VALUES (
 												".$mid.",
 												'".$opts_array[ARTICLE_DISPLAY_OPT_PLACEMENT]."',
-												'".$opts_array[ARTICLE_DISPLAY_OPT_ORG]."',
 												'".$opts_array[ARTICLE_DISPLAY_OPT_ARTICLE]."',
 												'".$opts_array[ARTICLE_DISPLAY_OPT_PARENT_TABS]."',
 												'".$search_keywords."',

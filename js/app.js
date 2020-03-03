@@ -37,17 +37,8 @@ $(document).ready(function(){
 
 		fq = fq+'&rows='+rows;
 		
-		// is this a project (1), org (0) or article (2) search?
 		var profileType = $('input[name=search_type]').val();
 		fq = fq+'&fq0=profile_type:'+profileType;
-
-		if (profileType == 1) {
-			$('#result-title-org').hide();
-			$('#result-title-placement').show();
-		} else {
-			$('#result-title-org').show();
-			$('#result-title-placement').hide();			
-		}
 		
 		// query origin
 		var o = $('#query-origin').val();

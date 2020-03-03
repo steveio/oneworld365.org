@@ -60,13 +60,9 @@
 	</section>
 		
     <section class="profiles">
-    	<div id="result-title-placement">
+    	<div id="">
     		<h2><?= $this->Get('ARTICLE_DISPLAY_OPT_PTITLE'); ?></h2>
     		<p class='lead'><?= $this->Get('ARTICLE_DISPLAY_OPT_PINTRO'); ?></p>
-    	</div>
-    	<div id="result-title-org" style="display: none">
-    		<h2><?= $this->Get('ARTICLE_DISPLAY_OPT_OTITLE'); ?></h2>
-    		<p class='lead'><?= $this->Get('ARTICLE_DISPLAY_OPT_OINTRO'); ?></p>
     	</div>
 	    <div id="result-hdr"></div>
 		<div id="profiles"></div>
