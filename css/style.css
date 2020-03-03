@@ -965,14 +965,92 @@ section .search-result-panel {
   box-shadow: 0px 1px 2px 0 rgba(0,0,0,0.2);
 }
 
-.search-result .featured-proj-s {
-  height: 186px;
-  padding: 6px;
-  margin: 2px;
-  border: 1px solid #CCCCCC;
-  box-shadow: 0px 1px 2px 0 rgba(0,0,0,0.2);
+@media only screen and (max-device-width: 640px) 
+{
+
+  .search-result .noshow {
+    visibility: hidden;
+    display: none;
+  }
+
+  .search-result .featured-proj-s {
+    height: 146px;
+    padding: 5px;
+    margin: 2px 4px 0px 0px;
+    border: 1px solid #CCCCCC;
+    box-shadow: 0px 1px 2px 0 rgba(0,0,0,0.2);
+    overflow: auto;
+  }
+
+  .search-result .featured-proj-s .img-container {
+	float: left;
+	width: 47%;
+  }
+
+  .search-result .featured-proj-s .detail-container {
+        float: right;
+        width: 50%;
+  }
+
+  .search-result .featured-proj-s .img-brand {
+    display: inline-block; 
+    float: right;  
+    width: 60px;
+  }
+
+  .search-result .featured-proj-s .detail-container h4 {
+        font-size: 1em;
+  }
+
+  .search-result .featured-proj-s .details {
+  	float: left:
+  }
+
 }
 
+
+@media only screen and (min-device-width: 640px)                                                                                                                   
+{
+  .search-result .featured-proj-s {
+    height: 176px;
+    padding: 6px;
+    margin: 2px;
+    border: 1px solid #CCCCCC;
+    box-shadow: 0px 1px 2px 0 rgba(0,0,0,0.2);
+    overflow: auto;
+  }
+
+  .search-result .featured-proj-s .img-container {
+        float: left;
+        width: 47%;
+        height: 140px;
+        margin: 0px 6px 6px 0px;
+
+  }
+
+  .search-result .featured-proj-s .detail-container {
+	float: right;
+	width: 50%;
+	overflow: auto;
+  }
+
+  .search-result .featured-proj-s .detail-container h4 {
+        font-size: 1em; 
+  }
+
+  .search-result .featured-proj-s .img-brand {
+    display: inline-block; 
+    float: right; 
+    width: 60px;
+    margin: 4px;
+  }
+
+  .search-result .featured-proj-s .details {
+	float: left;
+  }
+
+
+}
 
 .search-result .featured-proj-s .rating {
 	float: left;
@@ -1022,10 +1100,6 @@ section .search-result-panel {
 	height: 200px;
 }
 
-.search-result .featured-proj-s  .img-container {
-	position: relative;
-	height: 140px;
-}
 
 .search-result .featured-proj .featured-proj-img {
 	height: 240px;

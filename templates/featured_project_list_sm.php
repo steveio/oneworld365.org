@@ -5,18 +5,19 @@ $aProfile = $this->Get('PROFILE_ARRAY');
 $strProfileType = $this->Get('PROFILE_TYPE');
 
 
+$i = 0;
 foreach($aProfile as $oProfile)
 {
 if (!is_object($oProfile)) continue;
 $oProfile->GetImages();
 $aImageDetails = $oProfile->GetImageUrlArray();
 ?>
-<div class="span4 featured-proj-s">
+<div class="span4 featured-proj-s <?= ($i++ == 0) ? "" : "noshow"; ?>">
 
   <? if ($strProfileType == "aProfile") { ?>
 
   <div class="span12" style="">
-        <div class="span4" style="display: inline-block; vertical-align: top;">
+        <div class="img-container">
           <? if (strlen($aImageDetails['MEDIUM']['URL']) > 1) { ?>
           <a title="<?= $oProfile->GetTitle(76) ?>" href="<?= "/company/".$oProfile->GetCompUrlName()."/".$oProfile->GetUrlName()  ?>" class="">
           <img class="img-responsive img-rounded" src="<?= $aImageDetails['MEDIUM']['URL'] ?>" alt="<?= $oProfile->GetTitle(); ?>" />
@@ -24,22 +25,19 @@ $aImageDetails = $oProfile->GetImageUrlArray();
           <? } ?>
         </div>
 
-        <div class="" style="display: inline-block; float: right;  width: 60%;">
-            <div class="" style="display: inline-block; vertical-align: top; height: 70px;">
-	      <div style="height: 76px;">
+	<div class="detail-container">
+
+        <div class="img-brand">
               <a title="<?= $oProfile->GetCompanyName() ?>" href="<?= $oProfile->GetCompanyProfileUrl() ?>" target="_new" class="">
               <?= $oProfile->GetCompanyLogoUrl() ?>
               </a>
-              </div>
-            </div>
-		</div>
+	</div>
 
-        <div class="span12 title" style="">
+        <div class="details">
             <h4><a href="<?= "/company/".$oProfile->GetCompUrlName()."/".$oProfile->GetUrlName() ?>" title="" target="_new"><?= $oProfile->GetTitle(); ?></a></h4>
             <?php if ($oProfile->GetRating() >= 1) { ?>
             <div id="rateYo-<?= $oProfile->GetId(); ?>" class="span12 rating"></div>
             <?php } ?>
-        </div>
         <?php if ($oProfile->GetRating() >= 1) { ?>
         <script>
         $(document).ready(function(){
@@ -55,7 +53,6 @@ $aImageDetails = $oProfile->GetImageUrlArray();
         </script>
         <?php } ?>
 
-        <div class="span12 details">
         <ul class="">
             <?php if (strlen($oProfile->GetLocationLabel()) > 1) { ?>
             <li><?= $oProfile->GetLocationLabel(); ?></li>
@@ -66,6 +63,7 @@ $aImageDetails = $oProfile->GetImageUrlArray();
         </ul>
         </div>
 
+	</div>
   </div>
   <? } ?>
 
