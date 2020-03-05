@@ -47,9 +47,11 @@ $aPageOptions = $this->Get('aPageOptions');
     		<p class="lead"><strong><?= strip_tags($oArticle->GetDescShort()); ?></strong></p>
 
         <?
+	if ($aPageOptions[ARTICLE_DISPLAY_OPT_PLACEMENT] != "f") {
                 $oSearchResultPanel = $this->Get('oSearchResult');
                 if (is_object($oSearchResultPanel))
                         print $oSearchResultPanel->Render();
+	}
         ?>
 
 		<div class="span12 lead">
