@@ -1011,8 +1011,14 @@ section .search-result-panel {
 
 @media only screen and (min-device-width: 640px)                                                                                                                   
 {
+  .featured-proj-row {
+     clear: both;
+     
+     margin-bottom: 20px;
+  }
+
   .search-result .featured-proj-s {
-    height: 176px;
+    height: 166px;
     padding: 6px;
     margin: 2px;
     border: 1px solid #CCCCCC;
@@ -1039,8 +1045,10 @@ section .search-result-panel {
   }
 
   .search-result .featured-proj-s .img-brand {
-    display: inline-block; 
-    float: right; 
+    position: absolute;
+    bottom: 6px;
+    left: 0px;
+
     width: 60px;
     margin: 4px;
   }

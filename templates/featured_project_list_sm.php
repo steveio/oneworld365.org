@@ -1,5 +1,5 @@
 <!--  begin: FEATURED PROJECT -->
-<div class="span12 search-result">
+<div class="span12 search-result featured-proj-row">
 <?
 $aProfile = $this->Get('PROFILE_ARRAY');
 $strProfileType = $this->Get('PROFILE_TYPE');
@@ -23,15 +23,16 @@ $aImageDetails = $oProfile->GetImageUrlArray();
           <img class="img-responsive img-rounded" src="<?= $aImageDetails['MEDIUM']['URL'] ?>" alt="<?= $oProfile->GetTitle(); ?>" />
           </a>
           <? } ?>
-        </div>
-
-	<div class="detail-container">
-
-        <div class="img-brand">
+         <div class="img-brand">
               <a title="<?= $oProfile->GetCompanyName() ?>" href="<?= $oProfile->GetCompanyProfileUrl() ?>" target="_new" class="">
               <?= $oProfile->GetCompanyLogoUrl() ?>
               </a>
-	</div>
+         </div>
+        </div>
+
+
+	<div class="detail-container">
+
 
         <div class="details">
             <h4><a href="<?= "/company/".$oProfile->GetCompUrlName()."/".$oProfile->GetUrlName() ?>" title="" target="_new"><?= $oProfile->GetTitle(); ?></a></h4>
