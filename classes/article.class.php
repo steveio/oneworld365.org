@@ -20,6 +20,7 @@ define("ARTICLE_DISPLAY_OPT_REVIEW",15);
 define("ARTICLE_DISPLAY_OPT_SOCIAL",16);
 define("ARTICLE_DISPLAY_OPT_ADS",17);
 define("ARTICLE_DISPLAY_OPT_GADS",18);
+define("ARTICLE_DISPLAY_OPT_IMG",19);
 
 // keywords to drive search results
 define("ARTICLE_DISPLAY_OPT_SEARCH_KEYWORD",3);
@@ -713,7 +714,8 @@ class Content  implements TemplateInterface {
 			$opts[ARTICLE_DISPLAY_OPT_PROFILE] = ($aRow['opt_profile'] == NULL) ? "t" : $aRow['opt_profile'];
 			$opts[ARTICLE_DISPLAY_OPT_REVIEW] = ($aRow['opt_review'] == NULL) ? "t" : $aRow['opt_review'];
 			$opts[ARTICLE_DISPLAY_OPT_SOCIAL] = ($aRow['opt_social'] == NULL) ? "t" : $aRow['opt_social'];
-			$opts[ARTICLE_DISPLAY_OPT_ADS] = ($aRow['opt_social'] == NULL) ? "t" : $aRow['opt_ads'];
+			$opts[ARTICLE_DISPLAY_OPT_ADS] = ($aRow['opt_ads'] == NULL) ? "t" : $aRow['opt_ads'];
+			$opts[ARTICLE_DISPLAY_OPT_IMG] = ($aRow['opt_img'] == NULL) ? "t" : $aRow['opt_img'];
 
 			/* @deprecated */
 			$opts[ARTICLE_DISPLAY_OPT_PARENT_TABS] = ($aRow['opt_ptab'] == 't') ? 't' : 'f';

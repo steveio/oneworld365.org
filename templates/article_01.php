@@ -31,6 +31,7 @@ $aPageOptions = $this->Get('aPageOptions');
 
 <div class="span12 article-body">
 
+    <? if ($aPageOptions[ARTICLE_DISPLAY_OPT_IMG] != "f") { ?>
 	<div class="pull-right span6" style="padding: 6px;">
 	<?
 	if (is_object($oArticle->GetImage(0)) && $oArticle->GetImage(0)->GetHtml("",'')) {
@@ -40,6 +41,7 @@ $aPageOptions = $this->Get('aPageOptions');
 	}
 	?>
 	</div>
+	<?php } ?>
 
 	<h1><?= $oArticle->GetTitle(); ?></h1>
 
@@ -47,11 +49,11 @@ $aPageOptions = $this->Get('aPageOptions');
     		<p class="lead"><strong><?= strip_tags($oArticle->GetDescShort()); ?></strong></p>
 
         <?
-	if ($aPageOptions[ARTICLE_DISPLAY_OPT_PLACEMENT] != "f") {
-                $oSearchResultPanel = $this->Get('oSearchResult');
-                if (is_object($oSearchResultPanel))
-                        print $oSearchResultPanel->Render();
-	}
+    	if ($aPageOptions[ARTICLE_DISPLAY_OPT_PLACEMENT] != "f") {
+                    $oSearchResultPanel = $this->Get('oSearchResult');
+                    if (is_object($oSearchResultPanel))
+                            print $oSearchResultPanel->Render();
+    	}
         ?>
 
 		<div class="span12 lead">
