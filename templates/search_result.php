@@ -37,8 +37,6 @@
 			<div id="facet-country" class="facet-col span3"><?= $this->Get('FACET_COUNTRY'); ?></div> 
 			<div id="facet-activity" class="facet-col span3"><?= $this->Get('FACET_ACTIVITY'); ?></div>
 			<div id="text-fltr-div" class="facet-col span3"></div>
-			
-			<div id="" class="facet-col span3">&nbsp;</div>
 		</div>
 		
 		<div class="span12">
@@ -49,7 +47,7 @@
 			<div id="" class="facet-col span3">&nbsp;</div>
 		</div>
 
-		<div class="span12">
+		<div class="span12" style="float: left; margin-bottom: 10px;" >
 			<input id="do-search" type="button" class="btn-success btn-small" value="update" />
 			<input id="clear-filters" type="button" class="btn-success btn-small" value="clear filters" />		
 		</div>

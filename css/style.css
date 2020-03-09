@@ -13,7 +13,7 @@ body {
   padding: 10px 6px 10px 6px;
 }
 .container-inner {
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 @media screen and (min-device-width: 768px) {
@@ -993,9 +993,10 @@ section .search-result-panel {
   }
 
   .search-result .featured-proj-s .img-brand {
-    display: inline-block; 
-    float: right;  
+    position: absolute; 
     width: 60px;
+    left: 0px;
+    top: 90px; 
   }
 
   .search-result .featured-proj-s .detail-container h4 {
@@ -1557,4 +1558,9 @@ a {
 
 #refine-search-panel {
 	margin: 20px 0px 20px 0px;
+}
+
+.refine-search-btn {
+	floatL left;
+	margin-bottom: 10px;
 }
