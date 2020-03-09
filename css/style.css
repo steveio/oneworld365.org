@@ -12,8 +12,13 @@ body {
   background: #ffffff;
   padding: 10px 6px 10px 6px;
 }
-.container-inner {
-  margin-top: 10px;
+
+@media only screen and (min-device-width: 640px)
+{
+  .container-inner {
+    margin-top: 36px;
+  }
+
 }
 
 @media screen and (min-device-width: 768px) {
@@ -941,13 +946,6 @@ section .search-result-panel {
         }
 }
 
-.search-result .featured-proj {
-  height: 370px;
-  padding: 10px;
-  margin: 6px;
-  border: 1px solid #CCCCCC;
-  box-shadow: 0px 1px 2px 0 rgba(0,0,0,0.2);
-}
 
 .search-result .featured-proj-4col {
   height: 380px;
@@ -1099,20 +1097,12 @@ section .search-result-panel {
   background-color: #1faeff;
 }
 
-.search-result .img-container {
-	position: relative;
-	height: 250px;
-}
 
 .search-result .featured-proj-m  .img-container {
 	position: relative;
 	height: 200px;
 }
 
-
-.search-result .featured-proj .featured-proj-img {
-	height: 240px;
-}
 
 .search-result .featured-proj-m .overlay-img-m {
 	position: absolute;
@@ -1126,60 +1116,122 @@ section .search-result-panel {
     right: 10px;
 }
 
-.search-result .featured-proj .overlay-img {
-	position: absolute;
-	bottom: 24px;
-    right: 10px;
+
+@media only screen and (max-device-width: 640px)
+{
+
+  .search-result .featured-proj {
+      height: 180px;
+      padding: 6px;
+      margin: 4px;
+      border: 1px solid #CCCCCC;
+      box-shadow: 0px 1px 2px 0 rgba(0,0,0,0.2);
+  }
+
+  .search-result .img-container {
+      float: left;
+      position: relative;
+      width: 45%;
+  }
+
+  .search-result .featured-proj .details {
+      width: 50%;
+      float: right;
+  }
+
+  .search-result .featured-proj .overlay-brand {
+      position: absolute;
+      top: 70px;
+      left: 6px;
+  }
+
+  .search-result .featured-proj .title {
+      float: left;
+      padding: 0px;
+      margin: 0px;
+  }
+
+  .search-result .featured-proj .rating {
+      float: left;
+      min-height: 24px;
+      padding: 0px;
+      margin: 0px;
+  }
+
+  .search-result .featured-proj .featured-proj-details {
+      float: left;
+      font-size: .9em;
+
+  }
+
+  .search-result .featured-proj .details h3 {
+     float: left;
+     vertical-align: top;
+     line-height: 17px;
+     font-size: 1em;
+     font-weight: bold;
+  }
+
 }
 
-.search-result .img-container-4col {
-	position: relative;
-	height: 200px;
+@media only screen and (min-device-width: 640px)
+{
+
+  .featured-proj {
+      height: 370px;
+      padding: 8px;
+      margin: 4px 6px 0px 0px;
+      border: 1px solid #CCCCCC;
+      box-shadow: 0px 1px 2px 0 rgba(0,0,0,0.2);
+  }
+
+  .search-result .img-container {
+     position: relative;
+     height: 200px;
+  }
+
+  .search-result .featured-proj .overlay-brand {
+     position: absolute;
+     bottom: 24px;
+     right: 10px;
+  }
+
+  .search-result .featured-proj .proj-title {
+     float: left;
+     height: 56px;
+     padding: 0px;
+     margin: 0px 0px 4px 0px;
+  }
+
+  .search-result .featured-proj .title {
+     float: left;
+     height: 44px;
+     padding: 0px;
+     margin: 0px;
+  }
+
+  .search-result .featured-proj .rating {
+     float: left;
+     min-height: 24px;
+     margin: 0px 0px 4px 0px;
+  }
+
+  .search-result .featured-proj .details {
+     font-size: 1em;
+  }
+
+  .search-result .featured-proj .details h3 {
+     vertical-align: top;
+     line-height: 17px;
+     font-size: 1em;
+     font-weight: bold;
+  }
+ 
+  .search-result .featured-proj .featured-proj-details {
+     font-size: .9em;
+  }
 }
 
-.search-result .featured-proj .featured-proj-img-4col {
-	height: 200px;
-}
-
-.search-result .featured-proj .overlay-img-4col {
-	position: absolute;
-	bottom: 18px;
-    right: 6px;
-}
-
-.search-result .featured-proj .details {
-}
-
-.search-result .featured-proj .proj-title {
-	float: left;
-	height: 70px;
-	padding: 0px;
-	margin: 0px 0px 4px 0px;
-}
-
-.search-result .featured-proj .title {
-	float: left;
-	height: 54px;
-	padding: 0px;
-	margin: 0px;
-}
-
-.search-result .featured-proj .rating {
-	float: left;
-	min-height: 24px;
-	padding: 0px;
-	margin: 0px;
-}
-
-.search-result .featured-proj .details h3 {
-	vertical-align: top;
-	line-height: 17px;
-	font-size: 1em;
-	font-weight: bold;
-	padding: 0px;
-	margin: 0px;
-
-}
 
 .search-result .featured-org {
   height: 200px;

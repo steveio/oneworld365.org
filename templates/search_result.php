@@ -101,22 +101,21 @@
         <div class="span3 featured-proj">
 
         <% if (profile_type == 1) { %>
-            <div class="img-container-4col">
-			<div class="featured-proj-img-4col span12">
+            	<div class="img-container">
+			<div class="featured-proj-img span12">
 			<% if (image_url_medium.length > 1) { %>
       			<a title="<%= title %>" href="<%= profile_url %>" class="">
     			<img class="img-responsive img-rounded" src="<%= image_url_medium %>" alt="<%= title %>" />		
       			</a>
-				<span class="frame-overlay"></span>
 			<% } %>
 			</div>
-			<div class="overlay-img-4col">
+			<div class="overlay-brand">
 				<a title="<%= company_name %>" href="<%= company_profile_url %>" target="_new" class="">
 				<%= company_logo_url %>
-                </a>
-            </div>
-		    </div>
-			<div class="details">
+               			 </a>
+            		</div>
+		</div>
+		<div class="details">
                 <div class="span12 proj-title">
                    <div class="span12 title">
             	   <h3><a href="<%= profile_url %>" title="<%= title %>" target="_new"><%= title %></a></h3>
@@ -138,7 +137,7 @@
                     <% } %>
                 </ul>
                 </div>
-			</div>
+		</div>
         <% } else { %>
 
                 <% if (logo_url.length > 1) { %>
