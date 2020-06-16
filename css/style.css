@@ -1110,11 +1110,18 @@ section .search-result-panel {
     right: 10px;
 }
 
-.search-result .featured-proj-s .overlay-img-s {
+.search-result .featured-proj .overlay-img {
 	position: absolute;
-	bottom: 10px;
+	bottom: -20px;
     right: 10px;
 }
+
+.search-result .featured-proj-s .overlay-img-s {
+        position: absolute;
+        bottom: 10px;
+    right: 10px;
+}
+
 
 
 @media only screen and (max-device-width: 640px)
