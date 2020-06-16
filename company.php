@@ -206,7 +206,7 @@ if($oProfile->GetListingType() < BASIC_LISTING) {
 
 
 <div class="profile row">
-<div class='span12'>
+<div class='span12' style="margin-top: 20px;">
 
 <div class="pull-right" style="margin: 20px;">
 <div class="sharethis-inline-share-buttons"></div>
@@ -221,6 +221,7 @@ if($oProfile->GetListingType() < BASIC_LISTING) {
 	<div class="div-center" style=""><?= $t->Get('logo_img'); ?></div>
 <? }?>
 </div>
+
 <h1><?= $oProfile->GetTitle(); ?></h1>
 
 <div class='lead'>
