@@ -56,7 +56,7 @@ $aPageOptions = $this->Get('aPageOptions');
     	}
         ?>
 
-		<div class="span12 lead">
+		<div class="row-fluid lead">
 					<?
 					  // insert related profiles into article body
 						$strArticleBody = Article::convertCkEditorFont2Html($oArticle->GetDescFull(),"h3");
