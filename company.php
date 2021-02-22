@@ -149,7 +149,7 @@ $oRelatedArticle->GetArticleCollection()->AddFromArray($aRelatedArticle);
 $aButtonHtml = array();
 
 if (strlen($oProfile->GetUrl()) > 1 && $oProfile->GetUrl() != "http://") {
-   $aButtonHtml['WEBSITE'] = "<a class=\"btn btn-primary\" href=\"".$oProfile->GetUrl()."\" target=\"_new\" onclick=\"javascript: hit('/outgoing/".$oProfile->GetUrlName()."/www');\" title=\"Visit Website\" target=\"_blank\">Visit Website</a>";
+   //$aButtonHtml['WEBSITE'] = "<a class=\"btn btn-primary\" href=\"".$oProfile->GetUrl()."\" target=\"_new\" onclick=\"javascript: hit('/outgoing/".$oProfile->GetUrlName()."/www');\" title=\"Visit Website\" target=\"_blank\">Visit Website</a>";
 }
 
 if (strlen($oProfile->GetApplyUrl()) > 1) {

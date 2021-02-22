@@ -607,7 +607,7 @@ require_once("./header_html.php");
 				if (strlen($t->Get('apply_url')) > 1) {
 					/* button links to external apply/booking page */
 					?>
-					<a class="btn btn-primary" href="#" onclick="javascript: travel('<?= $t->Get('apply_url') ?>','/outgoing/<?= $t->Get('comp_url_name'); ?>/<?= $t->Get('url_name') ?>/www');" title="Apply Online" >Apply Online</a>
+					<!--<a class="btn btn-primary" href="#" onclick="javascript: travel('<?= $t->Get('apply_url') ?>','/outgoing/<?= $t->Get('comp_url_name'); ?>/<?= $t->Get('url_name') ?>/www');" title="Apply Online" >Apply Online</a>-->
 				
 					<?					
 				} else {
@@ -636,7 +636,7 @@ require_once("./header_html.php");
 				if (strlen($t->Get('apply_url')) > 1) {
 					/* button links to external apply page */
 					?>
-					<a class="btn btn-primary" target="_blank"  href="<?= $t->Get('apply_url') ?>" onclick="javascript: travel('<?= $t->Get('apply_url') ?>','/outgoing/<?= $t->Get('comp_url_name'); ?>/<?= $t->Get('url_name') ?>/www');" title="Apply Online">Apply Online</a>
+					<!--<a class="btn btn-primary" target="_blank"  href="<?= $t->Get('apply_url') ?>" onclick="javascript: travel('<?= $t->Get('apply_url') ?>','/outgoing/<?= $t->Get('comp_url_name'); ?>/<?= $t->Get('url_name') ?>/www');" title="Apply Online">Apply Online</a>-->
 					<?					
 				} else {				
 					?>
@@ -650,7 +650,7 @@ require_once("./header_html.php");
 		<?
 		if (strlen($t->Get('url')) > 1 && $t->Get('url') != "http://") {
 		?>
-		<a class="btn btn-primary" href="#" onclick="javascript: travel('<?= $t->Get('url'); ?>','/outgoing/<?= $t->Get('comp_url_name'); ?>/<?= $t->Get('url_name') ?>/www');">Visit Website</a>
+		<!--<a class="btn btn-primary" href="#" onclick="javascript: travel('<?= $t->Get('url'); ?>','/outgoing/<?= $t->Get('comp_url_name'); ?>/<?= $t->Get('url_name') ?>/www');">Visit Website</a>-->
 		<? } ?>
 		
 		</div>
